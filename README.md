@@ -14,36 +14,36 @@ This way, you can configure as many different tasks as you want.
 Things that can be modified through the configuration files:
 <pre>
 - Global parameters (see below) (task.cfg)
-- Conditions					(task.cond)
+- Conditions			(task.cond)
 - Displayed Information text	(task.info)
-- Displayed consent text		(task.cons)
-- Displayed instructions		(task.inst)
+- Displayed consent text	(task.cons)
+- Displayed instructions	(task.inst)
 - Displayed postlearning text	(task.post)
 - Questionnaires description 	(task.quest_info)
-- Questionnaires				(task.quest_items)
+- Questionnaires		(task.quest_items)
 </pre>
 
 Global parameters (task.cfg) include:	
 <pre>
-- Language											(english "en" or french "fr")
+- Language						(english "en" or french "fr")
 - Whether or not a completion link is included		(0/1)
-- Number of sessions								N
+- Number of sessions					N
 - Whether or not to include a postlearning session	(0/1)
 - Whether or not to include a questionnaire 		(0/1)
-- Maximum number of training sessions				N
-- Number of training trials							N
-- Number of trials per condition					N
-- Number of different stimuli per condition			N
-- Whether or not trials are interleaved				(0/1)
+- Maximum number of training sessions			N
+- Number of training trials				N
+- Number of trials per condition			N
+- Number of different stimuli per condition		N
+- Whether or not trials are interleaved			(0/1)
 </pre>
 
 Conditions (task.cond) are specified, with five parameters, one condition per line:
 <pre>
-- P1:	probability of outcome for option 1 [0 1]
-- P2:	probability of outcome for option 2 [0 1]
-- Mag:	magnitude of the outcome 			N>0
-- Val:	valence of the outcome. 			1: positive or zero, -1: negative or zero, 0: symmetric +1/-1
-- Info:	partial or complete outcome			(0/1)
+- P1:	probability of outcome for option 1 	[0 1]
+- P2:	probability of outcome for option 2 	[0 1]
+- Mag:	magnitude of the outcome 		N>0
+- Val:	valence of the outcome. 		1: positive or zero, -1: negative or zero, 0: symmetric +1/-1
+- Info:	partial or complete outcome		(0/1)
 </pre>
 
 
