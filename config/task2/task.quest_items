@@ -1,0 +1,172 @@
+#FTNDskiptest-1-2-6
+
+1$Do you smoke cigarettes on a daily basis?$Yes:1 $No:0
+
+#FTND-6
+
+1$How soon after waking do you smoke your first cigarette? $Within 5 minutes:3 $5-30 minutes:2 $31-60 minutes:1 $Later:0
+          
+2$Do you find it difficult to refrain from smoking in places where it is forbidden? $Yes:1 $No:0
+
+3$Which cigarette would you hate to give up? $The first in the morning:1 $Any other:0
+
+4$How many cigarettes a day do you smoke? $10 or less:0 $11-20:1 $21-30:2 $31 or more:3
+
+5$Do you smoke more frequently in the morning? $Yes:1 $No:0
+
+6$Do you smoke even if you are sick in bed most of the day? $Yes:1 $No:0
+
+#AUDITskiptest-1-2-10
+
+1$Do you ever have a drink containing alcohol? $Yes:1 $No:0
+
+#AUDIT-10
+
+1$How often do you have a drink containing alcohol? $Never:0 $Monthly or less:1 $2-4 times a month:2 $2-3 times a week:3 $4 or more times a week:4
+
+2$How many standard drinks containing alcohol do you have on a typical day when drinking? $Not concerned:0 $1 or 2:0 $3 or 4:1 $5 or 6:2 $7 to 9:3 $10 or more:4
+
+3$How often do you have six or more drinks on one occasion? $Never:0 $Less than monthly:1 $Monthly:2 $Weekly:3 $Daily or almost daily:4
+
+4$During the past year, how often have you found that you were not able to stop drinking once you had started? $Never:0 $Less than monthly:1 $Monthly:2 $Weekly:3 $Daily or almost daily:4
+
+5$During the past year, how often have you failed to do what was normally expected of you because of drinking? $Never:0 $Less than monthly:1 $Monthly:2 $Weekly:3 $Daily or almost daily:4
+
+6$During the past year, how often have you needed a drink in the morning to get yourself going after a heavy drinking session? $Never:0 $Less than monthly:1 $Monthly:2 $Weekly:3 $Daily or almost daily:4
+
+7$During the past year, how often have you had a feeling of guilt or remorse after drinking? $Never:0 $Less than monthly:1 $Monthly:2 $Weekly:3 $Daily or almost daily:4
+
+8$During the past year, have you been unable to remember what happened the night before because you had been drinking? $Never:0 $Less than monthly:1 $Monthly:2 $Weekly:3 $Daily or almost daily:4
+
+9$Have you or someone else been injured as a result of your drinking? $No:0 $Yes, but not in the past year:2 $Yes, during the past year:4
+
+10$Has a relative or friend, doctor or other health worker been concerned about your drinking or suggested you cut down? $No:0 $Yes, but not in the past year:2 $Yes, during the past year:4
+
+#HADSinstructions-1-
+
+1$For the following questions, please select the reply that is closest to how you have been feeling in the past week. Don't take too long over your replies, your immediate is best.
+
+#HADS-14
+1$I feel tense or "wound up".$Most of the time:3$A lot of the time:2From time to time:1$Not at all:0
+
+2$I get a sort of frightened feeling as if something awful is about to happen.$Very definitely and quite badly:3$Yes, but not too badly:2$A little, but it doesn't worry me:1$Not at all:0
+
+3$Worrying thoughts go through my mind.$A great deal of the time:3$A lot of the time:2$From time to time, but not too often:1$Only occasionally:0
+
+4$I can sit at ease and feel relaxed.$Definitely:0$Usually:1$Not often:2$Not at all:3
+
+5$I get a sort of frightened feeling like "butterflies" in the stomach.$Not at all:0$Occasionally:1$Quite often:2$Very often:3
+
+6$I feel restless as I have to be on the move.$Very much indeed:3$Quite a lot:2$Not very much:1$Not at all:0
+
+7$I get sudden feelings of panic.$Very often indeed:3$Quite often:2$Not very often:1$Not at all:0
+
+8$I still enjoy the things I used to enjoy.$Definitely as much:0$Not quite so much:1$Only a little:2$Hardly at all:3
+
+9$I can laugh and see the funny side of things.$As much as I always could:0$Not quite so much now:1$Definitely not so much now:2$Not at all:3
+
+10$I feel cheerful.$Not at all:3$Not often:2$Sometimes:1$Most of the time:0
+
+11$I feel as if I am slowed down.$Nearly all the time:3$Very often:2$Sometimes:1$Not at all:0
+
+12$I have lost interest in my appearance.$Definitely:3$I don't take as much care as I should:2$I may not take quite as much care:1$I take just as much care as ever:0
+
+13$I look forward with enjoyment to things.$As much as I ever did:0$Rather less than I used to:1$Definitely less than I used to:2$Hardly at all:3
+
+14$I can enjoy a good book or radio or TV program.$Often:0$Sometimes:1$Not often:2$Very seldom:3
+
+#BISBASinstructions-1-
+
+1$Indicate how much you agree or disagree with the following statements.$$
+
+#BISBAS-24
+
+1$A person's family is the most important thing in life.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+2$Even if something bad is about to happen to me, I rarely experience fear or nervousness.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+3$I go out of my way to get things I want.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+4$When I'm doing well at something I love to keep at it.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+5$I'm always willing to try something new if I think it will be fun.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+6$How I dress is important to me.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+7$When I get something I want, I feel excited and energized.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+8$Criticism or scolding hurts me quite a bit.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+9$When I want something I usually go all-out to get it.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+10$I will often do things for no other reason than that they might be fun.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+11$It's hard for me to find the time to do things such as get a haircut.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+12$If I see a chance to get something I want I move on it right away.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+13$I feel pretty worried or upset when I think or know somebody is angry at me.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+14$When I see an opportunity for something I like I get excited right away.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+15$I often act on the spur of the moment.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+16$If I think something unpleasant is going to happen I usually get pretty "worked up".$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+17$I often wonder why people act the way they do.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+18$When good things happen to me, it affects me strongly.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+19$I feel worried when I think I have done poorly at something important.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+20$I crave excitement and new sensations.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+21$When I go after something I use a "no holds barred" approach.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+22$I have very few fears compared to my friends.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+23$It would excite me to win a contest.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+24$I worry about making mistakes.$Very true for me:1$Somewhat true for me:2$Somewhat false for me:3$Very false for me:4
+
+#SESinstructions-1-
+
+1$The following questions measure your perception of your childhood and your current adult life. Please indicate your agreement with these statements. Please read each statement carefully, and then indicate how much you agree with the statement.$$
+
+#SES-13
+
+1$When I was growing up, someone in my house was always yelling at someone else.$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+2$Some of the punishments I received when I was a child now seem too harsh to me.$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+3$I guess you could say that I wasn’t treated as well as I should have been at home.$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+4$When I was younger than 10, things were often chaotic in my house$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+5$When I was younger than 10, people often moved in and out of my house on a pretty random basis$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+6$When I was younger than 10, I had a hard time knowing what my parents or other people in my house were going to say or do from day-to-day $1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+7$When I was younger than 10, my family usually had enough money for things when I was growing up$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+8$When I was younger than 10, I grew up in a relatively wealthy neighborhood$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+9$When I was younger than 10, I felt relatively wealthy compared to the other kids in my school$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+10$Now as an adult, I have enough money to buy things I want$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+11$Now as an adult, I don't need to worry too much about paying my bills$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+12$Now as an adult, I don't think I'll have to worry about money too much in the future$1 Strongly disagree:1$2:2$3:3$4:4$5:5$6:6$7:7$8:8$9 Strongly agree:9
+
+13$\Think of this ladder as representing where people stand in their communities./ People define community in different ways: please define it in whatever way is most meaningful to you. At the \top/ of the ladder are the people who have the \highest standing/ in their community. At the \bottom/ are the people who have the \lowest standing/ in their community. \Where would you place yourself on this ladder?/$10 Top - highest standing:10$9:9$8:8$7:7$6:6$5:5$4:4$3:3$2:2$1 Bottom - lower standing:1
+
+#TRUST-1
+
+1$Generally speaking, would you say that most people can be trusted or that you can't be too careful in dealing with most people? $Most people can be trusted:1 $Can't be too careful:2
+
+#CEPREMAP-2
+
+1$To what extent are you satisfied with your current standard of living? $0 Absolutely dissatisfied:0$1:1$2:2$3:3$4:4$5 Neither satisfied nor dissatisfied:5$6:6$7:7$8:8$9:9$10 Absolutely satisfied:10
+
+2$When you think about what you will experience in the coming years, are you satisfied with this perspective? $0 Absolutely dissatisfied:0$1:1$2:2$3:3$4:4$5 Neither satisfied nor dissatisfied:5$6:6$7:7$8:8$9:9$10 Absolutely satisfied:10

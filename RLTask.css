@@ -1,0 +1,12 @@
+.Main {
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #DDDDDD;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.DivElements {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+   }

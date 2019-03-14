@@ -1,0 +1,29 @@
+noimg$$$Cette expérience est divisée en 2 sessions, comprenant 20 essais chacune. La première session sera précédée d'une session d'entrainement de 20 essais.
+#
+1$$$Dans chaque essai, vous devrez choisir un symbole parmi deux.
+#
+1$+1$?$Certains symboles \vous font SOUVENT GAGNER/ des points ...
+#
+1$?$0$... alors que d'autres \vous font RAREMENT GAGNER/ des points.
+#
+2$-1$?$Il y a aussi des symboles qui \vous font SOUVENT PERDRE/ des points ...
+#
+2$?$0$... et d'autres qui \vous font RAREMENT PERDRE/ des points.
+#
+3$$$Parfois, le résultat correspondant au symbole non choisi sera aussi affiché.
+#
+3$0$+1$Par exemple, en choisissant le symbole à gauche vous gagneriez 0 points, tandis que vous auriez gagné 1 point si vous aviez choisi celui à droite.
+#
+4$0$-1$De même, ici vous gagneriez 0 points alors que vous pourriez perdre 1 point en choisissant l'autre symbole.
+#                                                                                                        
+$$$
+Essayez de gagner la maximum de points possibles
+en choisissant les symboles qui vous font
+
+\GAGNER SOUVENT/
+
+et ceux qui vous font
+
+\PERDRE RAREMENT/
+#
+noimg$$$Avant de commencer l'expérience, nous vous proposons quelques exemples pour vous entrainer.
