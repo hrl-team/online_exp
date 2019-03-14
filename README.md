@@ -72,7 +72,10 @@ Stimuli images under "images/**IMAGE-FOLDER-NAME**/stim" and outcomes under "ima
 
 
 # GENERATING A TASK
-Once e a task is specified through configuration files, it can be generated using the command " python generate.py **TASK-NAME** **IMAGE-FOLDER-NAME** "
+Once e a task is specified through configuration files, it can be generated using the command 
+<pre>
+python generate.py TASK-NAME IMAGE-FOLDER-NAME
+</pre>
 This will generate a javascript file "RLTask.js", which will be the main code for running the task.
 Example: to generate a task called task1 using the images in cards_gif, you need to run the command "python generate.py task1 cards_gif".
 
