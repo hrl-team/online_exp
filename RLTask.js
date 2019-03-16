@@ -368,9 +368,9 @@ $(document).ready(function() {
 
         CreateDiv('Stage', 'TextBoxDiv');
 
-        var Title = '<H2 align = "center">Consentement</H2><br>';
-        var Info = '<H3>Veuillez confirmer les affirmations suivantes avant de commencer l\'expérience</H3><br><br>';
-        var Ticks ='<input type="checkbox" name="consent" value="consent1" >J\'ai plus de 18 ans<br>' + '<input type="checkbox" name="consent" value="consent2" >Je comprends que je suis libre d\'arrêter l\'expérience à tout moment, sans devoir me justifier, et sans encourir aucune pénalité<br>' ;
+        var Title = '<H2 align = "center">Consent</H2><br>';
+        var Info = '<H3>Please read the following criteria and tick all boxes</H3><br><br>';
+        var Ticks ='<input type="checkbox" name="consent" value="consent1" >I have read the information page<br>' + '<input type="checkbox" name="consent" value="consent2" >I understand that I am free to withdraw at any time, without giving a reason, and without incurring any penalty<br>' + '<input type="checkbox" name="consent" value="consent3" >I am over 18 years of age.<br>' ;
 
         $('#TextBoxDiv').html(Title + Info + Ticks);
 
