@@ -1,13 +1,15 @@
 $(document).ready(function() {
     
     
-    //Initial Experiment Parameters
-    var ExpName = 'ipsostask';
-    var Language = "fr";
-    var CompLink = 1;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Init exp parameters             /////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var ExpName = 'task1';
+    var Language = "en";
+    var CompLink = 0;
     var NumSessions = 2;
     var PostLearning = 0;
-    var Questionnaire = 0;
+    var Questionnaire = 1;
     var MaxTrainingSessions = 2;
     var NbTrainingTrials = 3;
     var TrialsPerCondition = 20;
@@ -19,28 +21,17 @@ $(document).ready(function() {
     var NbIMG = 24;
     var IMGExt = 'gif';
 
-
     var fb_dur = 1000;
     var border_color = "white";
     
-    //On calcule les différentes conditions possibles
     var Conditions = [[0.75,0.25,1,1,0,],[0.75,0.25,1,1,1,],[0.75,0.25,1,-1,0,],[0.75,0.25,1,-1,1,],];
-
-
     var MagCond = [1,];
     var ValCond = [1,-1,];
     var InfCond = [0,1,];
-    
 
     var TrainingConditions = Conditions.slice(0);//copy
     var NumTrainingCond = TrainingConditions.length;
 
-    //console.log(TrainingConditions);
-    
-    
-
-    //console.log(TrainingConditions);
-    
     var Conds = [];
     for (j = 0; j < StatesPerCondition; j++) {
 	Conditions = shuffle(Conditions);
@@ -51,98 +42,12 @@ $(document).ready(function() {
 
     Conditions = Conds;
 
-    //console.log(Conditions);
-    
-    //Nombre de conditions en fonction de la magnitude, la valence, l'information et le stimulus
     var NumCond = Conditions.length;
-
-
     var NumCondPerSession = NumCond/NumSessions; 
-
-
     var NumTrials = TrialsPerCondition*NumCond/NumSessions;
 
-
-
-   //  ///juste pour ipsos
-   //  colors = ["red","green","blue","yellow","purple"];
-   //  shapes = ["circle","square","triangle","pentagone","star","cross"];
-
-   //  available_options = [];
-   //  for (var i = 0;i<colors.length;i++){
-   // 	for (var j = 0;j<shapes.length;j++){
-   // 	    available_options.push([colors[i],shapes[j]]);
-   // 	}
-   //  }
-
-   //  //console.log(available_options);
     
-   //  //On les randomise
-   //  available_options = shuffle(available_options);
-
-
-
-    
-   // //console.log(Conditions.toString());
-   // //On affecte un couple d'options pour chaque condition
-   //  var AllOptions = [];
-   //  var AllOptionValues = [];
-   //  var Options = [];
-   //  for (var i=0;i<NumCond;i++){
-
-   // 	op1 = Math.floor((Math.random() * available_options.length));
-   // 	col1 = available_options[op1][0];
-   // 	sha1 = available_options[op1][1];
-   // 	//console.log(col1+"_"+sha1);
-   // 	do {
-   // 	    op2 = Math.floor((Math.random() * available_options.length));
-   // 	    col2 = available_options[op2][0];
-   // 	    sha2 = available_options[op2][1];
-	    
-   // 	}
-   // 	while (col2==col1 || sha2==sha1 || (col1=="red" && col2 =="green") || (col1=="green" && col2 =="red"));
-
-   // 	available_options.splice(op1,1);
-   // 	available_options.splice(op2,1);
-
-   // 	op1 = col1+"_"+sha1;
-   // 	op2 = col2+"_"+sha2;
-	
-   // 	Options.push([op1,op2]);
-   // 	AllOptions.push(op1);
-   // 	AllOptions.push(op2);
-	
-   // 	AllOptionValues.push(Value(Conditions[i],0));
-   // 	AllOptionValues.push(Value(Conditions[i],1));
-   //  }
-    
-   //  var TrainingOptions = [];
-   //  for (var i=NumCond;i<NumCond+NumTrainingCond;i++){
-
-   // 	op1 = Math.floor((Math.random() * available_options.length));
-   // 	col1 = available_options[op1][0];
-   // 	sha1 = available_options[op1][1];	
-   // 	do {
-   // 	    op2 = Math.floor((Math.random() * available_options.length));
-   // 	    col2 = available_options[op2][0];
-   // 	    sha2 = available_options[op2][1];
-	
-   // 	}
-   // 	while (col2==col1 || sha2==sha1 || (col1=="red" && col2 =="green") || (col1=="green" && col2 =="red"));
-
-   // 	available_options.splice(op1,1);
-   // 	available_options.splice(op2,1);
-
-   // 	op1 = col1+"_"+sha1;
-   // 	op2 = col2+"_"+sha2;
-	
-   // 	TrainingOptions.push([op1,op2]);
-
-   //  }
-
-
-    
-    // On recupere les options disponibles
+    // Get available options
     var images=[];
     var available_options = [];
     for (var i = 1; i <= NbIMG; i++){
@@ -168,17 +73,12 @@ $(document).ready(function() {
 	fb_images[fb].style.top="0px";
     }
     
-    //console.log(images);
 
-    //On les randomise
+    //Randomize them
     available_options = shuffle(available_options);
 
-    // console.log(TrainingOptions.toString());
-    // console.log(Options.toString());
 
-    //console.log(Conditions.toString());
-
-   // //On affecte un couple d'options pour chaque condition
+    //Affect a pair of options for each condition
     var AllOptions = [];
     var AllOptionValues = [];
     var Options = [];
@@ -194,10 +94,6 @@ $(document).ready(function() {
     	TrainingOptions.push([available_options[2*i],available_options[2*i+1]]);
     	TrainingOptions.push([available_options[2*i],available_options[2*i+1]]);
     }
-    //console.log(TrainingOptions.toString());
-
-
-
 
     
 
@@ -215,26 +111,21 @@ $(document).ready(function() {
     	}
     }
 
-    
-    // console.log(TrainingCond);
-    // console.log(TrainingOptions);
-    
-    //construire postlearning
+       
+    //Build postlearning
     var PLOptions = [];
     var PLOptionValues = [];
     var indexes = [];
     var k = 0;
     for(var i = 0;i<NumCond*2;i++){
     	for(var j = 0;j<NumCond*2;j++){
-    // for(var i = 0;i<2;i++){
-    // 	for(var j = 0;j<2;j++){
 	    if (i!=j){
 		PLOptions.push([AllOptions[i],AllOptions[j]]);
 		PLOptionValues.push([AllOptionValues[i],AllOptionValues[j]]);
 		indexes.push(k);
 		k++;
-
-		//montrer deux fois chaque paire dans un ordre particulier
+		
+		//Show each pair twice in each order
 		PLOptions.push([AllOptions[i],AllOptions[j]]);
 		PLOptionValues.push([AllOptionValues[i],AllOptionValues[j]]);
 		indexes.push(k);
@@ -255,11 +146,9 @@ $(document).ready(function() {
 	PostLearningOptionValues.push(PLOptionValues[indexes[i]]);
     }
 
-    //console.log(PostLearningOptionValues);
 
     var NumPostLearningTrials = PostLearningOptions.length;
 
-    //Construire les trials a priori? oui parceque chaque condition doit etre tiree un nombre exacte de fois
     var Sessions = [];
     for (s = 0; s < NumSessions; s++) {
 	Sessions[s] = [];
@@ -279,7 +168,7 @@ $(document).ready(function() {
     }
     
 
-    //Construire training
+    //Build training
     var TrainingSession = [];
     for (c = 0; c < NumTrainingCond; c++) {
     	for (t = 0; t < NbTrainingTrials; t++) {
@@ -289,182 +178,48 @@ $(document).ready(function() {
     // if (InterLeaved){
     // 	TrainingSession = shuffle(TrainingSession);
     //}
-    //    console.log(TrainingConditions);
 
 
     
 
+
+
+   
+    //init variables
     var SumReward = 0;
     var TotalReward = 0;
-
-    var Init_time = (new Date()).getTime();
-
-    var ExpID = CreateCode(); //utiliser expId comme identifiant supplementaire?
-
-    //InitDB();
-
-    // Initial Display Parameters
-    // var thisHeight = $(document).height() * 0.9;
-    // var thisWidth = thisHeight * 4 / 3;
-
-    // var DispWidth = thisHeight * 5 / 6;
-
-    // $('#Main').css('min-height', thisHeight);
-    // $('#Main').css('width', thisWidth);
-
-
     var InvertedPosition = 0;
     var clickDisabeled = false;
     var TrainSess = -1;
     var maxDBCalls = 1;
-    var browsInfo = GetOS()+' - '+GetBrowser();
 
 
     var log = '';
     var clog = '';
     
+    var ExpID = CreateCode();
     var SubID = ExpID;
+    var Init_time = (new Date()).getTime();
+    var browsInfo = GetOS()+' - '+GetBrowser();
 
 
     var link = '';
-    
     url = location.href;
-    //console.log(url);
-    if(url.split("?").length>1){
-	SubID = url.split("?id=")[1].split("&link=")[0]
-	link = url.split("&link=")[1]
-	
-	// args = url.split("?")[1].split("&")
-	// for (i = 0; i < args.length; i++) {
-	//     arg = args[i].split("=")[0];
-	//     val = args[i].split("=")[1];
-	//     if(arg=='id')
-	// 	SubID=val;
-	//     else if (arg=='link')
-	// 	link=val;
-	// }
-	//EndExperiment();
-	//console.log(SubID);
-	//console.log(link);
-	Information();
-    }
-    
-    // if(args.length>1 && args[1].split("=").length>1 && args[1].split("=")[0]=="id"){
-    // 	SubID = args[1].split("=")[1];
-    // 	Information();
-    // }
-    else{
-    	GetUserID();
-    }
-    //console.log(SubID);
-
-    //Start experiment
-    //GetUserID();
-    //Information();
-
-    
-    // var SubID =  ExpID;
-    // SendExpDataDB(0);
-    // PlaySessions(0);
-
-    // PlayTraining(0);
-    //StartSessions();
-    //StartPostLearning(1);
-    //Instructions(1);
-    //StartQuestionnaire();
-    //GetUserInfo();
-    //EndExperiment();
-    
-  
-    
-
-    function GetBrowser(){
-
-	var nVer = navigator.appVersion;
-	var nAgt = navigator.userAgent;
-	var browserName  = navigator.appName;
-	var fullVersion  = ''+parseFloat(navigator.appVersion);
-	var majorVersion = parseInt(navigator.appVersion,10);
-	var nameOffset,verOffset,ix;
-
-	// In Opera, the true version is after "Opera" or after "Version"
-	if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
-	    browserName = "Opera";
-	    fullVersion = nAgt.substring(verOffset+6);
-	    if ((verOffset=nAgt.indexOf("Version"))!=-1)
-		fullVersion = nAgt.substring(verOffset+8);
-	}
-	// In MSIE, the true version is after "MSIE" in userAgent
-	else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
-	    browserName = "Microsoft Internet Explorer";
-	    fullVersion = nAgt.substring(verOffset+5);
-	}
-	// In Chrome, the true version is after "Chrome"
-	else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
-	    browserName = "Chrome";
-	    fullVersion = nAgt.substring(verOffset+7);
-	}
-	// In Safari, the true version is after "Safari" or after "Version"
-	else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
-	    browserName = "Safari";
-	    fullVersion = nAgt.substring(verOffset+7);
-	    if ((verOffset=nAgt.indexOf("Version"))!=-1)
-		fullVersion = nAgt.substring(verOffset+8);
-	}
-	// In Firefox, the true version is after "Firefox"
-	else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
-	    browserName = "Firefox";
-	    fullVersion = nAgt.substring(verOffset+8);
-	}
-	// In most other browsers, "name/version" is at the end of userAgent
-	else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) <
-		  (verOffset=nAgt.lastIndexOf('/')) )
-	{
-	    browserName = nAgt.substring(nameOffset,verOffset);
-	    fullVersion = nAgt.substring(verOffset+1);
-	    if (browserName.toLowerCase()==browserName.toUpperCase()) {
-		browserName = navigator.appName;
-	    }
-	}
-	// trim the fullVersion string at semicolon/space if present
-	if ((ix=fullVersion.indexOf(";"))!=-1)
-	    fullVersion=fullVersion.substring(0,ix);
-	if ((ix=fullVersion.indexOf(" "))!=-1)
-	    fullVersion=fullVersion.substring(0,ix);
-
-	majorVersion = parseInt(''+fullVersion,10);
-	if (isNaN(majorVersion)) {
-	    fullVersion  = ''+parseFloat(navigator.appVersion);
-	    majorVersion = parseInt(navigator.appVersion,10);
-	}
-	
-	//return   'Browser: '+browserName+' - Vers:'+fullVersion+' - MajorVers: '+majorVersion+' - NavAppName: '+navigator.appName+' - NavUserAge: '+navigator.userAgent;
-	return   browserName+' '+fullVersion+' '+majorVersion+' '+navigator.appName+' '+navigator.userAgent;
-	
-    }
 
 
-    function GetOS(){
-	var OSName="Unknown OS";
-	if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-	if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-	if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-	if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
-
-	return OSName;
-    }
 
 
-    
-    
-    // Experiment Functions
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Start the experiment            /////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    GetUserID();      
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////       User info functions     ////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function GetUserID() {
 
-
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
 
         CreateDiv('Stage', 'TextBoxDiv');
 	
@@ -473,7 +228,6 @@ $(document).ready(function() {
 	    var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toConsent" value="Next" ></div>';
 	}
 	else if(Language=='fr'){
-	    //var Title = '<H3>Avant de commencer, veuillez:<br><br>- maximiser la fenêtre de votre navigateur<br><br>- désactiver téléphone/email/musique et toute autre distration<br><br>- renseigner votre identifiant IPSOS: <input type="text" id = "textbox_id" name="ID"></H3>';
 	    var Title = '<H3>Veuillez choisir un identifiant: <input type="text" id = "textbox_id" name="ID"></H3>';
 	    var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toConsent" value="Suivant" ></div>';
 	}
@@ -493,32 +247,93 @@ $(document).ready(function() {
 		$('#Stage').empty();
 		$('#Bottom').empty();
 
-		//Instructions(1);//move to first page of instructions
 		Information();
-		//PlayQuestionnaire(1);
-		//EndExperiment();
 	    }else{
 		alert('You must enter your Prolific ID.');
 	    }
         });
     };
 
+    function GetUserInfo(){
+
+	CreateDiv('Stage', 'TextBoxDiv');
+
+	if(Language=='en'){
+	    var Title = '<H3 align = "center">Please indicate your</H3><br>';
+	    var Age =  '<div align="center">Age: <input type="text" id = "age_id" name="age"><br></div>';
+	    var Gender = '<div align="center">Gender: <input type= "radio" id="m" name= "gender" >Male'+'<input type= "radio" id="f" name= "gender">Female<br></div>';
+	    var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toQuestions" value="Next" ></div>';
+	}
+	else if(Language=='fr'){
+	    var Title = '<H3 align = "center">Quel est votre âge?</H3><br>';
+	    var Age =  '<div align="center"><input type="text" id = "age_id" name="age"><br></div>';
+	    var Gender = '<H3 align = "center">Vous êtes</H3><br><div align="center"><input type= "radio" id="m" name= "gender" >  Un homme  '+'<input type= "radio" id="f" name= "gender">  Une femme<br></div><br><br><br>';
+	    var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toQuestions" value="Suivant" ></div>';
+	}
+	$('#TextBoxDiv').html(Title+Age+'<br><br>'+Gender);
+
+        $('#Bottom').html(Buttons);
+	
+        $('#toQuestions').click(function() {
+	    age_val = parseInt(document.getElementById('age_id').value);
+	    
+	    if( ($("input:radio:checked").length < 1) || isNaN(age_val) || (age_val <0) || (age_val>100) ){
+            if(Language=='en'){
+                alert('Please fill the required fields.');        
+            }
+            else if(Language=='fr'){
+                alert('Veuillez indiquer les informations requises.');
+            }
+		}
+	    else {		
+		gender_val = $("input:radio:checked").attr('id');
+		SendUserDataDB(0);
+		
+		$('#TextBoxDiv').remove();
+		$('#Stage').empty();
+		$('#Bottom').empty();
+		
+		Information();
+	    }
+        });
+			      
+	
+	function SendUserDataDB(){
+	    $.ajax({
+		type: 'POST',
+		data: {id: SubID, age: age_val, gender: gender_val},
+		async: true,
+		url: 'InsertSubDetails.php',
+		dataType: 'json',
+		success: function(r) {
+		    if (r[0].ErrorNo > 0) {
+			//SubID = createCode();
+			//RunExperiment(thisAge, thisEdu, thisSex);
+			//DisplayError();
+		    } else {
+			//PlaySessions(0);
+		    }
+		    ;
+
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+		    alert("Status: " + textStatus);
+		    alert("Error: " + errorThrown);
+		}
+	    });
+	}	
+
+    }
     
     
-    // Experiment Functions
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Information      ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function Information() {
 
-
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-
         CreateDiv('Stage', 'TextBoxDiv');
-	//document.getElementById("TextBoxDiv").style.backgroundColor = "#DCDCDC";
 
         var Title = '<H2 align = "center"></H2>';
-        var Info = '<H3 align = "justify">Dans ce jeu, vous devez gagner un maximum de points en découvrant quelles cartes ont le plus de chance de vous faire gagner des points... ou de vous en faire perdre !<br><br>Pour chacun de vos choix, vous verrez combien de points vous avez gagné ou perdu.<br><br>Parfois, vous verrez aussi combien vous auriez gagné ou perdu si vous aviez choisi l\'autre carte.<br><br>Commençons par un petit entraînement !</H3>';
+        var Info = '<H3 align = "justify">In this game, you have to earn a maximum of points by discovering which cards are the most likely to give you points... or to make you lose points!<br><br>For each of your choices, you will see how much points you earned or lost.<br><br>Sometimes, you will also see how much you would have earned or lost if you had chosen the other card.<br><br>Let\'s start with a little practice!<br></H3>';
 
         $('#TextBoxDiv').html(Title + Info);
 	
@@ -544,13 +359,13 @@ $(document).ready(function() {
         });
     };
 
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Consent          ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function Consent() {
 
-
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
 
         CreateDiv('Stage', 'TextBoxDiv');
 
@@ -583,16 +398,14 @@ $(document).ready(function() {
         });
     };
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Instructions     ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function Instructions(PageNum) {
 
 
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-	// var PicHeight = DispWidth / 2;
-
-	var NumPages = 11;//number of pages
+	var NumPages = 11;
         
 
         CreateDiv('Stage', 'TextBoxDiv');
@@ -685,8 +498,6 @@ $(document).ready(function() {
         }
         ;
 
-        //var ThisImage = '<div align = "center"><img src="images/Inst' + PageNum + '.png" alt="" height="' + PicHeight + '" align="center"><br><br></div>';
-
 	FBcolor = getColor(parseFloat(FB));
 	CFBcolor = getColor(parseFloat(CFB));
 	
@@ -695,25 +506,16 @@ $(document).ready(function() {
 	    CFBcolor = border_color;
 	}
 	var condimg = parseInt(flag);
-	//console.log(parseInt(FB));
 
 
 	if(isNaN(condimg)){
-	    //if(flag=='noimg'){
 	    $('#TextBoxDiv').html(Title + Info);
-	    // $('#leftfb').css("visibility", "hidden");
-	    // $('#rightfb').css("visibility", "hidden");
-	    // $('#leftimg').css("visibility", "hidden");
-	    // $('#rightimg').css("visibility", "hidden");
 	    
 	}else{
 	    
 	    var Option1 = '<img id = "Option1" id = "Option1" src="'+IMGPath+'stim/'+TrainingOptions[condimg-1][0]+'.'+IMGExt+'" style="border:5px solid '+ FBcolor+'">';
             var Option2 = '<img id = "Option1" id = "Option2" src="'+IMGPath+'stim/'+TrainingOptions[condimg-1][1]+'.'+IMGExt+'" style="border:5px solid '+CFBcolor+'">';
-	    	    
-	    // $(Option1).css({"border-color": color,
-	    // 			"border-width": "5px",
-	    // 			"border-style": "solid"});
+
 
             var ThisImage = '</br></br><div class="row">  <div class="col-md-1"></div>  <div id = "leftimg" class="col-md-3" align = "center">' + Option1 + '</div><div id = "Middle" class="col-md-4"></div><div id="rightimg" class="col-md-3" align = "center">' + Option2 + '</div><div class="col-md-1"></div></div>';	
 	    
@@ -721,17 +523,6 @@ $(document).ready(function() {
 
 	    $('#TextBoxDiv').html(Title + ThisImage + Feedback + Info);
 	}
-
-
-	//document.getElementById("Option1").style.borderColor=color;
-	
-	// if (PageNum >= 2) {
-	//     $('#left').css("visibility", "visible");
-	//     $('#right').css("visibility", "visible");
-	//     document.getElementById("Option1").style.borderColor="hsla(120, 100%, 50%,1)";
-	//     // document.getElementById("Option1").style.borderWidth="5px";
-	//     // document.getElementById("Option1").style.borderStyle="solid";
-	// }
 	
         var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="Back" value="Back" >\n\
 <input align="center" type="button"  class="btn btn-default" id="Next" value="Next" >\n\
@@ -802,74 +593,45 @@ $(document).ready(function() {
     
     function SendExpDataDB(call){
     	clog = 'EXP: '+ExpName+' $ EXPID: '+ExpID+' $ ID: '+SubID+' $ BROW: '+browsInfo;
-	//tosend: ID, questionnaire, question, answer
     	$.ajax({
     	    type: 'POST',
     	    data: {expID: ExpID, id: SubID, exp: ExpName, browser: browsInfo},
-    	    //data: {expID: 'a', id: 'b', exp: 'c', browser: 'd'},
     	    async: true,
     	    url: 'InsertExpDetails.php',
     	    dataType: 'json',
     	    success: function(r) {
-    		//clog = 'expdata: sucess $ '+clog+' $ call: '+call+' $ errno: '+r[0].ErrNo+'\n';
 		clog = 'experiment_data $ '+clog+' $ dbcall success \n';
     		log+= clog;
 		InsertLog(0,'exp');
 
     		if (r[0].ErrorNo > 0 && call+1<maxDBCalls){
-    		    //SendErrorDB(cl);
     		    SendExpDataDB(call+1);
     		}
     	    },
     	    error: function(XMLHttpRequest, textStatus, errorThrown) {
-    		//clog='expdata: error $ '+clog+' $ call: '+call+' $ stat: '+textStatus+' $ err: '+errorThrown+'\n';
     		clog = 'experiment_data $ '+clog+' $ dbcall failure \n';
-		log+=clog;
+    		log+=clog;
     		InsertLog(0,'exp');
 
     		if(call+1<maxDBCalls){
-    		    //SendErrorDB(cl);
     		    SendExpDataDB(call+1);
     		}
-    		//alert("Status DB: "+ call+" "+ textStatus);
-    		//alert("Error: " + errorThrown);
     	    },
-	    // complete: function (data) {
-
-	    // }
-    	});
+		});
     }
 
     
 
     function InsertLog(call,ext){
-    	//tosend: ID, questionnaire, question, answer
     	$.ajax({
     	    type: 'POST',
 	    data: {expID: ExpID, id: SubID, exp: ExpName, log:log, ext:ext},
-	    //data: {expID: 1, id: 2, exp: 3, log:log, ext:5},
 	    async: true,
     	    url: 'InsertLog.php',
     	    dataType: 'json',
-	    // success: function(r) {
-	    // 	// cl = 'insertlog: sucess - expid: '+ExpID+' - id: '+SubID+' - exp: '+ExpName+' - call: '+call+'\n';//+' - errno: '+r[0].ErrNo+'\n';
-	    // 	// log+= cl;
-	    // 	//console.log(log);
-	    // 	// if (r[0].ErrorNo > 0 && call+1<maxDBCalls){
-	    // 	//     //SendErrorDB(cl);
-	    // 	//     InsertLog(call+1,ext);
-	    // 	// }
-	    // },
-    	    error: function(XMLHttpRequest, textStatus, errorThrown) {
+		    error: function(XMLHttpRequest, textStatus, errorThrown) {
     	    	clog='insertlog failure call '+call+' - status: '+textStatus+' - error: '+errorThrown+'\n';
     	    	log+=clog;
-	    	//console.log(log);
-	    	// if(call+1<maxDBCalls){
-	    	//     InsertLog(call+1,ext);
-	    	// }
-    	    	//console.log(log);
-    	    	//alert("Status log: "+ call+" " + textStatus);
-    	    	//alert("Error: " + errorThrown);
 		msg ="Internet connection";
 		if(Language=='en'){
 		    msg ="Please verify your internet connection before continuing the experiment";
@@ -877,55 +639,30 @@ $(document).ready(function() {
 		else if(Language=='fr'){
 		    msg="Veuillez vérifier votre connexion internet avant de continuer";
 		}
-		//console.log(clog);
-		//alert(msg);
+		alert(msg);
 		InsertLog(call+1,ext);
     	    }
     	});
     }
     
 
-    // $sep = " $ ";
-    // $myfile = fopen("log/" . $EXPID . "_" . $ID . "_" . $EXP . ".exp", "w") or die("Unable to open file!");
-    // $txt = $EXPID . $sep . $ID . $sep . $EXP . $sep . $BROW . $sep . $TIME . "\n";
-    // fwrite($myfile, $txt);
-    // fclose($myfile);
-
-    //     $sep = " $ ";
-    // $myfile = fopen("log/" . $EXPID . "_" . $ID . "_" . $EXP . ".learn", "w") or die("Unable to open file!");
-    // $txt = $EXPID . $sep . $ID . $sep . $EXP . $sep . $SESSION . $sep . $TRIAL . $sep . $P1 . $sep . $P2 . $sep . $MAG . $sep . $VAL . $sep . $INF . $sep . $OP1 . $sep . $OP2 . $sep . $INV . $sep . $CTIME . $sep . $CLR  . $sep . $CGB  . $sep . $RGB . $sep . $CFGB . $sep . $RTIME . $sep . $TIME . "\n";
-    // fwrite($myfile, $txt);
-    // fclose($myfile);
-
     
 
     
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Trainning        ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function PlayTraining(TrialNum) {
 
-
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-
-	
 	
 	if($('#TextBoxDiv').length == 0){
             CreateDiv('Stage', 'TextBoxDiv');
 	    document.getElementById("TextBoxDiv").style.backgroundColor = "white";
 	}
-	//Choisir une condition
-	
+
 	var Condition = TrainingSession[TrialNum][0];
 	var Option = TrainingSession[TrialNum][1];
 
-	//console.log(IMGPath+Option[0]+'.'+IMGExt);
-
-	//var Option1 = '<img id = "Option1" src="'+IMGPath+'stim/'+Option[0]+'.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'; position:relative; top:0px">';
-        //var Option2 = '<img id = "Option2" src="'+IMGPath+'stim/'+Option[1]+'.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'; position:relative; top:0px">';
-
-	
 	var Option1 = images[Option[0]];
 	Option1.id = "Option1";
 	Option1 = Option1.outerHTML;
@@ -935,9 +672,6 @@ $(document).ready(function() {
 	Option2 = Option2.outerHTML;
 
 
-	// var FB1 = '<img id = "FB1" src="'+IMGPath+'fb/empty.' +IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'">';
-        // var FB2 = '<img id = "FB2" src="'+IMGPath+'fb/empty.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'">';
-
 	var FB1 = fb_images["empty"];
 	FB1.id = "FB1";
 	FB1 = FB1.outerHTML;
@@ -946,12 +680,6 @@ $(document).ready(function() {
 	FB2.id = "FB2";
 	FB2 = FB2.outerHTML;
 	
-	//var Title = '<div id = "Title"><H2 align = "center">Condition '+Condition[0]*Condition[1]+' '+Condition[2]+'<br><br><br><br></H2></div>';
-
-	//var Title = '<div id = "Title"><H2 align = "center">Choose one symbol<br></H2></div>';
-	//var Info = '<div id = "Title"><H3 align = "center">Press [e] for left and [p] for right<br><br><br></H3></div>';
-
-	//var Title = '<div id = "Title"><H2 align = "center">Choisissez une carte<br><br><br><br></H2></div>';
 
 	if(Language=='en'){
             var Title = '<div id = "Title"><H2 align = "center">Click on the card of your choice<br><br><br><br></H2></div>';
@@ -960,12 +688,7 @@ $(document).ready(function() {
 	    var Title = '<div id = "Title"><H2 align = "center">Cliquez sur la carte de votre choix<br><br><br><br></H2></div>';
 	}
      
-	
-
-	// var Title = '<div id = "Title"><H2 align = "center">Choisissez une carte<br></H2></div>';
-	// var Info = '<div id = "Title"><H3 align = "center">Appuyez sur [e] pour la gauche et sur [p] pour la droite<br><br><br></H3></div>';
-
-	
+		
 	var Images = '<div id = "stimrow" class="row" style= "transform: translate(0%, -100%);position:relative"> <div class="col-xs-1 col-md-1"></div>  <div class="col-xs-3 col-md-3">' + Option1 + '</div><div id = "Middle" class="col-xs-4 col-md-4"></div><div class="col-xs-3 col-md-3">' + Option2 + '</div><div class="col-xs-1 col-md-1"></div></div>';
 
 	var Feedback = '<div id = "fbrow" class="row">  <div class="col-xs-1 col-md-1"></div>  <div class="col-xs-3 col-md-3">' + FB1 + '</div><div id = "Middle" class="col-xs-4 col-md-4"></div><div class="col-xs-3 col-md-3">' + FB2 + '</div><div class="col-xs-1 col-md-1"></div></div>';
@@ -991,7 +714,6 @@ $(document).ready(function() {
 	var Choice_time = (new Date()).getTime();
 
 	var myEventHandler = function(e){
-	    //console.log(e.which);
 	    
 	    var key = getKeyCode(e);
 	    
@@ -1004,7 +726,6 @@ $(document).ready(function() {
 	    	color = getColor(fb);
 	    	document.getElementById("Option1").style.borderColor="black";
 		targetElement.removeEventListener('keypress', myEventHandler);
-	    	//Next();
 	    	
 	    }
 	    else if ((key ==112 && !InvertedPosition) || (key ==101 && InvertedPosition)){
@@ -1016,7 +737,6 @@ $(document).ready(function() {
 	    	color = getColor(fb);
 	    	document.getElementById("Option2").style.borderColor="black";
 		targetElement.removeEventListener('keypress', myEventHandler);
-	    	//Next();
 	    }
 	    
 	};
@@ -1034,9 +754,7 @@ $(document).ready(function() {
 	    clickDisabeled = true;
 	    
 	    fb = Reward(1);
-	    //color = getColor(fb);
 	    document.getElementById("Option1").style.borderColor="black";            
-	    //Next();
 
         });
         $('#Option2').click(function() {
@@ -1045,9 +763,7 @@ $(document).ready(function() {
 	    clickDisabeled = true;
 	    
             fb = Reward(2);
-	    //color = getColor(fb);
 	    document.getElementById("Option2").style.borderColor="black";
-            //Next();
         });
 
 	
@@ -1062,11 +778,6 @@ $(document).ready(function() {
 	    }
 
 	    
-            //$('#Title').empty();
-	    
-	    //var Condition = Sessions[SessionNum][TrialNum][0];
-
-	    //var Condition = Trials[SessionNum*NumTrials+TrialNum];
 
             P1 = Condition[0];
 	    P2 = Condition[1];
@@ -1095,7 +806,7 @@ $(document).ready(function() {
             var RandomNum1 = Math.random();
 	    var RandomNum2 = Math.random();
 	    
-            if (Choice === 1) {//Option1
+            if (Choice === 1) {
 		if (RandomNum1 < P1) {
                     ThisReward = Rwd;
 		}
@@ -1103,7 +814,7 @@ $(document).ready(function() {
                     OtherReward = Rwd;
 		}
 		
-            } else {//Option2
+            } else {
 		if (RandomNum2 < P2) {
                     ThisReward = Rwd;
 		}
@@ -1141,11 +852,7 @@ $(document).ready(function() {
 		    
 		    if(Info===1){
 			fb2.src = fb_images['cf_'+OtherReward].src;
-			//setTimeout(function() {
 			slideCard(pic2);
-			//}, 1000)
-			
-			
 		    }
 
 		    
@@ -1159,11 +866,7 @@ $(document).ready(function() {
 		    
 		    if(Info===1){
 			fb1.src = fb_images['cf_'+OtherReward].src;
-			//setTimeout(function() {
-			slideCard(pic1);
-			//}, 1000)
-			
-			
+			slideCard(pic1);		
 		    }
 
 		    
@@ -1184,27 +887,11 @@ $(document).ready(function() {
 
 	    function slideCard(img){
 	
-		//console.log("draw");
 		tl = new TimelineLite();
 		tl.to(img, 1, {y:"100%"})
 	    }
 
 	    
-	    // function slideCard(img){
-	    // 	var pos = 0;
-	    // 	var id = setInterval(frame, 1);
-	    // 	function frame() {
-	    // 	    if (pos == 100) {
-	    // 		clearInterval(id);
-	    // 	    } else {
-	    // 		pos++; 
-	    // 		console.log("draw");
-	    // 		img.style.top = pos + '%'; 
-	    // 	    }
-	    // 	}
-	    // }
-
-	    //ID, SESSION, TRIAL, P1, P2, Magnitude, Valence, Information, Option1, Option2, InvertedPosition(0/1),Time_from_start, Choice_Left_Right(-11), Choice_Good_Bad(1/0), Reward_Good_Bad(1/0), CF_Reward_Good_Bad(1/0), Reaction_Time
 	    function SendTrainDataDB(call){
 		clog = 'EXP: '+ExpName+' $ EXPID: '+ExpID+' $ ID: '+SubID+' $ SESSION: '+TrainSess+' $ TRIAL: '+TrialNum+' $ P1: '+P1+' $ P2: '+P2+' $ MAG: '+Mag+' $ VAL: '+Val+' $ INF: '+Info+' $ OP1: '+Option[0]+' $ OP2: '+Option[1]+' $ INV: '+InvertedPosition+' $ CTIME: '+(Choice_time-Init_time)+' $ CLR: '+left_right+' $ CGB: '+((Choice == 1)?1:0)+' $ RGB: '+((ThisReward == Rwd)?1:0)+' $ CFGB: '+((OtherReward == Rwd)?1:0)+' $ RTIME: '+(Reaction_time-Choice_time);
 
@@ -1215,28 +902,20 @@ $(document).ready(function() {
 		    url: 'InsertLearningDataDB.php',
 		    dataType: 'json',
 		    success: function(r) {
-			//clog = 'train: sucess $ '+clog+' $ call: '+call+' $ errno: '+r[0].ErrNo+'\n';
 			clog = 'learning_data $ '+clog+' $ dbcall success \n';
 			log+= clog;
-			//update log before not after because variables get changed 
 			
 			if (r[0].ErrorNo > 0 && call+1<maxDBCalls){
-			    //SendErrorDB(cl);
 			    SendTrainDataDB(call+1);
 			}
 		    },
 		    error: function(XMLHttpRequest, textStatus, errorThrown) {
-			//clog = 'train: sucess $ '+clog+' $ call: '+call+' $ stat: '+textStatus+' $ err: '+errorThrown+'\n';
 			clog = 'learning_data $ '+clog+' $ dbcall failure \n';
 			log+=clog;
-			//console.log(errorThrown);
 			
 			if(call+1<maxDBCalls){
-			    //SendErrorDB(cl);
 			    SendTrainDataDB(call+1);
 			}
-			//alert("Status: " + textStatus);
-			//alert("Error: " + errorThrown);
 		    }
 		});
 
@@ -1251,12 +930,9 @@ $(document).ready(function() {
 	    TrialNum++;
 	    if (TrialNum < NbTrainingTrials*NumTrainingCond) {
 		setTimeout(function() {
-                    //$('#TextBoxDiv').fadeOut(500);
 		    $('#stimrow').fadeOut(500);
 		    $('#fbrow').fadeOut(500);
 		    setTimeout(function() {
-			//$('#Stage').empty();
-			//$('#Bottom').empty();
 			clickDisabeled=false;
 			PlayTraining(TrialNum);
                     }, 500);
@@ -1283,15 +959,7 @@ $(document).ready(function() {
     function EndTraining(){
 
 	InsertLog(0,'train');
-	//console.log(log);
 	
-	// $('#Top').css('height', thisHeight / 20);
-	// $('#Stage').css('width', DispWidth);
-	// $('#Stage').css('min-height', thisHeight * 17 / 20);
-	// $('#Bottom').css('min-height', thisHeight / 20);
-
-	// var PicHeight = DispWidth / 2;
-
 	CreateDiv('Stage', 'TextBoxDiv');
 
 	var Title = '<H2 align = "center"></H2>';
@@ -1348,13 +1016,10 @@ $(document).ready(function() {
     }
 
 
-    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Learning         ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function StartSessions(){
-	// $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-	// var PicHeight = DispWidth / 2;
 	
         var NumPages = 2;//number of pages
         
@@ -1373,13 +1038,10 @@ $(document).ready(function() {
 	var go;
 	
 	if(Language=='en'){
-            //Info = '<H3 align = "center">Now, you will start the experiment.<br>Click start when you are ready.</h3><br><br>';
 	    Info = '<H3 align = "center">Now, you are about to start the game.<br>Click on start when you are ready.</h3><br><br>';
 
 	    instBut  = "Return to instructions";
-	    //trainBut = "Replay training";
 	    trainBut = "Play the practice again";
-	    //startBut = "Start experiment";
 	    startBut = "Start the game";
 	    
 	    ready = 'Ready';
@@ -1405,7 +1067,6 @@ $(document).ready(function() {
 	
         var Buttons = '<div align="center">';
 	if(TrainSess > -(MaxTrainingSessions+1)){
-	    //Buttons+='<input align="center" type="button"  class="btn btn-default" id="Inst" value='+instBut+' >\n\ ';
 	    Buttons+='<input align="center" type="button"  class="btn btn-default" id="Train" value='+trainBut+' >\n\ ';
 	}
 	Buttons+='<input align="center" type="button"  class="btn btn-default" id="Start" value='+startBut+' >';
@@ -1413,7 +1074,6 @@ $(document).ready(function() {
 
         $('#Bottom').html(Buttons);
 
-	//if(TrainSess > -4){
         $('#Inst').click(function() {
 
 	    $('#TextBoxDiv').remove();
@@ -1431,7 +1091,6 @@ $(document).ready(function() {
 	    PlayTraining(0);
 
         });
-	//}
         $('#Start').click(function() {
 
             $('#TextBoxDiv').remove();
@@ -1445,9 +1104,7 @@ $(document).ready(function() {
                     	$('#Stage').html('<H1 align = "center">'+go+'</H1>');
                         setTimeout(function() {
                             $('#Stage').empty();
-                            //DisplayOptions(1);//Start with the first trial
 			    PlaySessions(0);
-			    //PlayTraining(0);
                         }, 1000);
                     }, 1000);
                 }, 1000);
@@ -1460,13 +1117,8 @@ $(document).ready(function() {
 
     function EndTrainingStartSessions(){
 	InsertLog(0,'train');
-	// $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-	// var PicHeight = DispWidth / 2;
 	
-        var NumPages = 2;//number of pages
+        var NumPages = 2;
         
 
         CreateDiv('Stage', 'TextBoxDiv');
@@ -1511,13 +1163,10 @@ $(document).ready(function() {
 
 	
 	if(Language=='en'){
-            //Info = Info+'<H3 align = "center">Now, you will start the experiment.<br><br>Click start when you are ready.</h3><br><br>';
 	    Info += '<H3 align = "center">Now, you are about to start the game.<br>Click on start when you are ready.</h3><br><br>';
 	    
 	    instBut  = '"Return to instructions"';
-	    //trainBut = '"Replay training"';
 	    trainBut = '"Play the practice again"';
-	    //startBut = '"Start experiment"';
 	    startBut = '"Start the game"';
 	    
 
@@ -1544,7 +1193,6 @@ $(document).ready(function() {
 	
         var Buttons = '<div align="center">';
 	if(TrainSess > -(MaxTrainingSessions+1)){
-	    //Buttons+='<input align="center" type="button"  class="btn btn-default" id="Inst" value='+instBut+' >\n\ ';
 	    Buttons+='<input align="center" type="button"  class="btn btn-default" id="Train" value='+trainBut+' >\n\ ';
 	}
 	Buttons+='<input align="center" type="button"  class="btn btn-default" id="Start" value='+startBut+' >';
@@ -1552,7 +1200,6 @@ $(document).ready(function() {
 
         $('#Bottom').html(Buttons);
 
-	//if(TrainSess > -4){
         $('#Inst').click(function() {
 
 	    $('#TextBoxDiv').remove();
@@ -1570,7 +1217,6 @@ $(document).ready(function() {
 	    PlayTraining(0);
 
         });
-	//}
         $('#Start').click(function() {
 
             $('#TextBoxDiv').remove();
@@ -1584,9 +1230,7 @@ $(document).ready(function() {
                     	$('#Stage').html('<H1 align = "center">'+go+'</H1>');
                         setTimeout(function() {
                             $('#Stage').empty();
-                            //DisplayOptions(1);//Start with the first trial
 			    PlaySessions(0);
-			    //PlayTraining(0);
                         }, 1000);
                     }, 1000);
                 }, 1000);
@@ -1607,25 +1251,14 @@ $(document).ready(function() {
     function PlayOptions(SessionNum,TrialNum) {
 
 
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-
 	if($('#TextBoxDiv').length == 0){
             CreateDiv('Stage', 'TextBoxDiv');
 	    document.getElementById("TextBoxDiv").style.backgroundColor = "white";
 	}
 
-	//Choisir une condition
 	var Condition = Sessions[SessionNum][TrialNum][0];
 	var Option = Sessions[SessionNum][TrialNum][1];
 
-
-        // var Option1 = '<img id = "Option1" src="'+IMGPath+'stim/'+Option[0]+'.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'; position:relative; top:0px">';
-        // var Option2 = '<img id = "Option2" src="'+IMGPath+'stim/'+Option[1]+'.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'; position:relative; top:0px">';
-
-	
 	var Option1 = images[Option[0]];
 	Option1.id = "Option1";
 	Option1 = Option1.outerHTML;
@@ -1633,9 +1266,6 @@ $(document).ready(function() {
 	var Option2 = images[Option[1]];
 	Option2.id = "Option2";
 	Option2 = Option2.outerHTML;
-
-	// var FB1 = '<img id = "FB1" src="'+IMGPath+'fb/empty.' +IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'">';
-        // var FB2 = '<img id = "FB2" src="'+IMGPath+'fb/empty.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'">';
 
 	var FB1 = fb_images["empty"];
 	FB1.id = "FB1";
@@ -1645,8 +1275,6 @@ $(document).ready(function() {
 	FB2.id = "FB2";
 	FB2 = FB2.outerHTML;
 	
-	//var Title = '<div id = "Title"><H2 align = "center">Choisissez une carte<br><br><br><br></H2></div>';
-	
 	if(Language=='en'){
             var Title = '<div id = "Title"><H2 align = "center">Click on the card of your choice<br><br><br><br></H2></div>';
 	}
@@ -1654,8 +1282,6 @@ $(document).ready(function() {
 	    var Title = '<div id = "Title"><H2 align = "center">Cliquez sur la carte de votre choix<br><br><br><br></H2></div>';
 	}
 
-        //height: 200px;width: 200px;z-index:9999;background:red;left:-50%;top: 50%;left: 50%; transform: translate(-50%, -50%);position:fixed;
-	
 	var Images = '<div id= "stimrow" class="row" style= "transform: translate(0%, -100%);position:relative"> <div class="col-xs-1 col-md-1"></div>  <div class="col-xs-3 col-md-3">' + Option1 + '</div><div id = "Middle" class="col-xs-4 col-md-4"></div><div class="col-xs-3 col-md-3">' + Option2 + '</div><div class="col-xs-1 col-md-1"></div></div>';
 
 	var Feedback = '<div id= "fbrow" class="row">  <div class="col-xs-1 col-md-1"></div>  <div class="col-xs-3 col-md-3">' + FB1 + '</div><div id = "Middle" class="col-xs-4 col-md-4"></div><div class="col-xs-3 col-md-3">' + FB2 + '</div><div class="col-xs-1 col-md-1"></div></div>';
@@ -1690,9 +1316,7 @@ $(document).ready(function() {
 	    	fb = Reward(1);
 	    	color = getColor(fb);
 	    	document.getElementById("Option1").style.borderColor="black";
-		//document.getElementById("FB1").style.borderColor=color;
 		targetElement.removeEventListener('keypress', myEventHandler);
-	    	//Next();
 	    	
 	    }
 	    else if ((key ==112 && !InvertedPosition) || (key ==101 && InvertedPosition)){
@@ -1703,9 +1327,7 @@ $(document).ready(function() {
 	    	fb = Reward(2);
 	    	color = getColor(fb);
 		document.getElementById("Option2").style.borderColor="black";
-	    	//document.getElementById("FB2").style.borderColor=color;
 		targetElement.removeEventListener('keypress', myEventHandler);
-	    	//Next();
 	    }
 	    
 	};
@@ -1751,12 +1373,6 @@ $(document).ready(function() {
 	    }
 
 	    
-            //$('#Title').empty();
-	    
-	    //var Condition = Sessions[SessionNum][TrialNum][0];
-
-	    //var Condition = Trials[SessionNum*NumTrials+TrialNum];
-
             P1 = Condition[0];
 	    P2 = Condition[1];
 	    Mag = Condition[2];
@@ -1834,9 +1450,7 @@ $(document).ready(function() {
 		    
 		    if(Info===1){
 			fb2.src = fb_images['cf_'+OtherReward].src;
-			//setTimeout(function() {
 			slideCard(pic2);
-			//}, 1000)
 			
 			
 		    }
@@ -1852,9 +1466,7 @@ $(document).ready(function() {
 		    
 		    if(Info===1){
 			fb1.src = fb_images['cf_'+OtherReward].src;
-			//setTimeout(function() {
 			slideCard(pic1);
-			//}, 1000)
 			
 			
 		    }
@@ -1880,29 +1492,11 @@ $(document).ready(function() {
 
 	    function slideCard(img){
 	
-		//console.log("draw");
 		tl = new TimelineLite();
 		tl.to(img, 1, {y:"100%"})
 	    }
 
 	    
-	    // function slideCard(img){
-	    // 	var pos = 0;
-	    // 	var id = setInterval(frame, 1);
-	    // 	function frame() {
-	    // 	    if (pos == 100) {
-	    // 		clearInterval(id);
-	    // 	    } else {
-	    // 		pos++; 
-	    // 		img.style.top = pos + '%'; 
-	    // 	    }
-	    // 	}
-	    // }
-	    
-
-
-
-	    //ID, SESSION, TRIAL, P1, P2, Magnitude, Valence, Information, Option1, Option2, InvertedPosition(0/1),Time_from_start, Choice_Left_Right(-11), Choice_Good_Bad(1/0), Reward_Good_Bad(1/0), CF_Reward_Good_Bad(1/0), Reaction_Time
 	    function SendLearnDataDB(call){
 		clog = 'EXP: '+ExpName+' $ EXPID: '+ExpID+' $ ID: '+SubID+' $ SESSION: '+SessionNum+' $ TRIAL: '+TrialNum+' $ P1: '+P1+' $ P2: '+P2+' $ MAG: '+Mag+' $ VAL: '+Val+' $ INF: '+Info+' $ OP1: '+Option[0]+' $ OP2: '+Option[1]+' $ INV: '+InvertedPosition+' $ CTIME: '+(Choice_time-Init_time)+' $ CLR: '+left_right+' $ CGB: '+((Choice == 1)?1:0)+' $ RGB: '+((ThisReward == Rwd)?1:0)+' $ CFGB: '+((OtherReward == Rwd)?1:0)+' $ RTIME: '+(Reaction_time-Choice_time);
 
@@ -1913,26 +1507,20 @@ $(document).ready(function() {
 		    url: 'InsertLearningDataDB.php',
 		    dataType: 'json',
 		    success: function(r) {
-			//clog = 'learn: sucess $ '+clog+' $ call: '+call+' $ errno: '+r[0].ErrNo+'\n';
 			clog = 'learning_data $ '+clog+' $ dbcall success \n';
 			log+= clog;
 			
 			if (r[0].ErrorNo > 0 && call+1<maxDBCalls){
-			    //SendErrorDB(cl);
 			    SendLearnDataDB(call+1);
 			}
 		    },
 		    error: function(XMLHttpRequest, textStatus, errorThrown) {
-			//clog = 'learn: error $ '+clog+' $ call: '+call+' $ stat: '+textStatus+' $ err: '+errorThrown+'\n';
 			clog = 'learning_data $ '+clog+' $ dbcall failure \n';
 			log+=clog;
 			
 			if(call+1<maxDBCalls){
-			    //SendErrorDB(cl);
 			    SendLearnDataDB(call+1);
 			}
-			//alert("Status: " + textStatus);
-			//alert("Error: " + errorThrown);
 		    }
 		});
 
@@ -1948,12 +1536,10 @@ $(document).ready(function() {
 	    TrialNum++;
 	    if (TrialNum < NumTrials) {
 		setTimeout(function() {
-                    //$('#TextBoxDiv').fadeOut(500);
 		    $('#stimrow').fadeOut(500);
 		    $('#fbrow').fadeOut(500);
                     setTimeout(function() {
-			// $('#Stage').empty();
-			// $('#Bottom').empty();
+
 			clickDisabeled=false;
 			PlayOptions(SessionNum,TrialNum);
                     }, 500);
@@ -1994,19 +1580,6 @@ $(document).ready(function() {
     }
     function EndSession(SessionNum) {
 
-	// if(SessionNum == NumSessions-1){
-	//     console.log(SessionNum+' '+NumSessions);
-	//     NextSession(SessionNum+1);
-	//     break;
-	// }
-	
-	// $('#Top').css('height', thisHeight / 20);
-	// $('#Stage').css('width', DispWidth);
-	// $('#Stage').css('min-height', thisHeight * 17 / 20);
-	// $('#Bottom').css('min-height', thisHeight / 20);
-
-	// var PicHeight = DispWidth / 2;
-
 	CreateDiv('Stage', 'TextBoxDiv');
 
 	var Title = '<H2 align = "center">SESSION</H2>';
@@ -2023,9 +1596,7 @@ $(document).ready(function() {
 		wonlost = ' lost ';
 	    }
 
-	    //Info = '<H3 align = "center">You have finished this session. <br>You '+wonlost+toprint+' points!</h3><br><br>';
-	    //Info = '<H3 align = "center">You have finished this session. <br>You '+wonlost+toprint+' points!</h3><br><br>';
-	    Info = '<H3 align = "center">You have done half of the game. <br>So far, you have '+wonlost+toprint+' points.<br>Only 5 minutes of effort and you will be done !</h3><br><br>';
+	    Info = '<H3 align = "center">You have done half of the game. <br>So far, you have '+wonlost+toprint+' points.</h3><br><br>';
 	    nextBut='"Next"';
 	}
 	else if (Language=='fr'){
@@ -2034,13 +1605,11 @@ $(document).ready(function() {
 		wonlost = ' perdu ';
 	    }
 
-	    //Info = '<H3 align = "center">Vous avez terminé cette session. <br>Vous avez'+wonlost+toprint+' points!</h3><br><br>';
 	    Info = '<H3 align = "center">Vous êtes à la moitié du jeu. <br>Jusqu\'ici vous avez'+wonlost+toprint+' points.<br>Encore 5 minutes d\'effort et vous aurez terminé !</h3><br><br>';
 	    
 	    nextBut='"Suivant"';
 	}
 	TotalReward= TotalReward+SumReward;
-	//TotalReward = parseInt(TotalReward*1000)/1000;
 	SumReward = 0;
 	
 	$('#TextBoxDiv').html(Info);
@@ -2052,26 +1621,20 @@ $(document).ready(function() {
 
 
 	$('#Next').click(function() {
-	    //SessionNum++;
 	    $('#TextBoxDiv').remove();
 	    $('#Stage').empty();
 	    $('#Bottom').empty();
 	    
 	    PlaySessions(SessionNum);
-	    //NextSession(SessionNum);
 	    
 	})
     }
 
     
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////            Postlearning              //////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function StartPostLearning(PageNum) {
-
-	// $('#Top').css('height', thisHeight / 20);
-	// $('#Stage').css('width', DispWidth);
-	// $('#Stage').css('min-height', thisHeight * 17 / 20);
-	// $('#Bottom').css('min-height', thisHeight / 20);
-	// var PicHeight = DispWidth / 2; 
 
 	var NumPages = 5;//number of pages
 	
@@ -2157,17 +1720,13 @@ $(document).ready(function() {
             $('#Stage').empty();
             $('#Bottom').empty();
 	    setTimeout(function() {
-		//$('#Stage').html('<H1 align = "center">Ready</H1>');
 		$('#Stage').html('<H1 align = "center">A vos marques...</H1>');
                 setTimeout(function() {
-                    //$('#Stage').html('<H1 align = "center">Steady</H1>');
 		    $('#Stage').html('<H1 align = "center">Prêts?</H1>');
                     setTimeout(function() {
-                        //$('#Stage').html('<H1 align = "center">Go!</H1>');
 			$('#Stage').html('<H1 align = "center">Partez!</H1>');
                 	setTimeout(function() {
 			    $('#Stage').empty();
-			    //DisplayOptions(1);//Start with the first trial
 			    PlayPostLearning(0);
 			}, 1000);
 		    }, 1000);
@@ -2182,24 +1741,14 @@ $(document).ready(function() {
     
     function PlayPostLearning(TrialNum) {
 
-
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-
-
         CreateDiv('Stage', 'TextBoxDiv');
 
-	//Choisir une condition
-	
 
 	var Option = PostLearningOptions[TrialNum];
 
         var Option1 = '<img id = "Option1" src="'+IMGPath+'stim/'+Option[0]+'.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'">';
         var Option2 = '<img id = "Option2" src="'+IMGPath+'stim/'+Option[1]+'.'+IMGExt+'" class="img-responsive center-block" style="border:5px solid '+ border_color +'">';
 
-	//var Title = '<div id = "Title"><H2 align = "center">Condition '+Option[0]+' '+Option[1]+'<br><br><br><br></H2></div>';
 	var Title = '<div id = "Title"><H2 align = "center">Which one is the best symbol?<br><br><br><br></H2></div>';
 
 	
@@ -2242,36 +1791,35 @@ $(document).ready(function() {
 
 	var targetElement = document.body;
 	
-	//targetElement.addEventListener('keydown',myEventHandler);
-	targetElement.addEventListener('keypress',myEventHandler);
+	//targetElement.addEventListener('keypress',myEventHandler);
 	
-	////with click
-        // $('#Option1').click(function() {
-	//     if(clickDisabeled)
-	// 	return;
-	//     clickDisabeled = true;
-	    
-        //     $(this).css({"border-color": "white",
-	// 		 "border-width": "5px",
-	// 		 "border-style": "solid"});
+	//with click
+    $('#Option1').click(function() {
+    if(clickDisabeled)
+	return;
+    clickDisabeled = true;
+    
+        $(this).css({"border-color": "white",
+		 "border-width": "5px",
+		 "border-style": "solid"});
 
-        //     Reward(1);
-	//     Next();
+        Reward(1);
+    Next();
 
-        // });
-        // $('#Option2').click(function() {
-        //     if(clickDisabeled)
-	// 	return;
-	//     clickDisabeled = true;
+    });
+    $('#Option2').click(function() {
+        if(clickDisabeled)
+	return;
+    clickDisabeled = true;
 
-	//     $(this).css({"border-color": "white",
-	// 		 "border-width": "5px",
-	// 		 "border-style": "solid"});
+    $(this).css({"border-color": "white",
+		 "border-width": "5px",
+		 "border-style": "solid"});
 
 
-        //     Reward(2);
-	//     Next();
-        // });
+        Reward(2);
+    Next();
+    });
 
 	
 
@@ -2291,19 +1839,7 @@ $(document).ready(function() {
 	    }
 
 
-	    SumReward = SumReward + 1000 * OptionValues[Choice-1];
-	    //SumReward = parseInt(SumReward*1000)/1000;
-	    
-	    //console.log(OptionValues[Choice-1]+'\t'+SumReward);
-
-	    // if (Choice==1)
-	    // 	var Feedback = '<div class="row">  <div class="col-md-1"> </div> <div class="col-md-3" align = "center"><font size="5">^</font></div> <div  id = "Middle"  class="col-md-4"></div><div class="col-md-3" align = "center"> <font size="5"></font> </div> <div class="col-md-1"> </div> </div>';
-	    // else if (Choice==2)
-	    // 	var Feedback = '<div class="row">  <div class="col-md-1"> </div> <div class="col-md-3" align = "center"><font size="5"></font></div> <div  id = "Middle"  class="col-md-4"></div><div class="col-md-3" align = "center"><font size="5">^</font> </div> <div class="col-md-1"> </div> </div>';
-
-	    // $('#TextBoxDiv').html($('#TextBoxDiv').html()+Feedback);
-
-	    
+	    SumReward = SumReward + 1000 * OptionValues[Choice-1];    
 	    
 	    SendPostDataDB(0);
 
@@ -2317,26 +1853,20 @@ $(document).ready(function() {
 		    url: 'InsertPostLearningDataDB.php',
 		    dataType: 'json',
 		    success: function(r) {
-			//clog = 'post: sucess $ '+clog+' $ call: '+call+' $ errno: '+r[0].ErrNo+'\n';
 			clog = 'post_learning_data $ '+clog+' $ dbcall success \n';
 			log+= clog;
 			
 			if (r[0].ErrorNo > 0 && call+1<maxDBCalls){
-			    //SendErrorDB(cl);
 			    SendPostDataDB(call+1);
 			}
 		    },
 		    error: function(XMLHttpRequest, textStatus, errorThrown) {
-			//clog = 'post: error $ '+clog+' $ call: '+call+' $ stat: '+textStatus+' $ err: '+errorThrown+'\n';
 			clog = 'post_learning_data $ '+clog+' $ dbcall failure \n';
 			log+=clog;
 			
 			if(call+1<maxDBCalls){
-			    //SendErrorDB(cl);
 			    SendPostDataDB(call+1);
 			}
-			//alert("Status: " + textStatus);
-			//alert("Error: " + errorThrown);
 		    }
 		});
 	    };
@@ -2375,13 +1905,6 @@ $(document).ready(function() {
 
 	InsertLog(0,'post');
 	
-	// $('#Top').css('height', thisHeight / 20);
-	// $('#Stage').css('width', DispWidth);
-	// $('#Stage').css('min-height', thisHeight * 17 / 20);
-	// $('#Bottom').css('min-height', thisHeight / 20);
-
-	// var PicHeight = DispWidth / 2;
-
 	CreateDiv('Stage', 'TextBoxDiv');
 
 	var Title = '<H2 align = "center">SESSION</H2>';
@@ -2414,7 +1937,6 @@ $(document).ready(function() {
 
 	
 	TotalReward= TotalReward+SumReward;
-	//TotalReward = parseInt(TotalReward*1000)/1000;
 	    
 	SumReward = 0;
 
@@ -2441,14 +1963,10 @@ $(document).ready(function() {
 
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////       Questionnaires          //////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function StartQuestionnaire(){
-
-	// $('#Top').css('height', thisHeight / 20);
-	// $('#Stage').css('width', DispWidth);
-	// $('#Stage').css('min-height', thisHeight * 17 / 20);
-	// $('#Bottom').css('min-height', thisHeight / 20);
-
-	// var PicHeight = DispWidth / 2;
 
 	CreateDiv('Stage', 'TextBoxDiv');
 
@@ -2480,77 +1998,10 @@ $(document).ready(function() {
 
     };
 
-    function GetUserInfo(){
-
-	// $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-
-	CreateDiv('Stage', 'TextBoxDiv');
-	var Title = '<H3 align = "center">Please indicate your</H3><br>';
-	var Age =  '<div align="center">Age: <input type="text" id = "age_id" name="age"><br></div>';
-	var Gender = '<div align="center">Gender: <input type= "radio" id="m" name= "gender" >Male'+'<input type= "radio" id="f" name= "gender">Female<br></div>';
-
-	$('#TextBoxDiv').html(Title+Age+'<br><br>'+Gender);
-
-	var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toQuestions" value="Next" ></div>';
-        $('#Bottom').html(Buttons);
-	
-        $('#toQuestions').click(function() {
-	    age_val = parseInt(document.getElementById('age_id').value);
-	    
-	    if( ($("input:radio:checked").length < 1) || isNaN(age_val) || (age_val <0) || (age_val>100) ){
-		alert('Please fill the required fields.');
-	    }
-	    else {		
-		gender_val = $("input:radio:checked").attr('id');
-		SendUserDataDB(0);
-		
-		$('#TextBoxDiv').remove();
-		$('#Stage').empty();
-		$('#Bottom').empty();
-		
-		PlayQuestionnaire(1);
-	    }
-        });
-			      
-	
-	function SendUserDataDB(){
-	    $.ajax({
-		type: 'POST',
-		data: {id: SubID, age: age_val, gender: gender_val},
-		async: true,
-		url: 'InsertSubDetails.php',
-		dataType: 'json',
-		success: function(r) {
-		    if (r[0].ErrorNo > 0) {
-			//SubID = createCode();
-			//RunExperiment(thisAge, thisEdu, thisSex);
-			//DisplayError();
-		    } else {
-			//PlaySessions(0);
-		    }
-		    ;
-
-		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
-		    alert("Status: " + textStatus);
-		    alert("Error: " + errorThrown);
-		}
-	    });
-	}	
-
-    }
     function PlayQuestionnaire(QuestNum) {
 
 	
-        // $('#Top').css('height', thisHeight / 20);
-        // $('#Stage').css('width', DispWidth);
-        // $('#Stage').css('min-height', thisHeight * 17 / 20);
-        // $('#Bottom').css('min-height', thisHeight / 20);
-	// var PicHeight = DispWidth / 2;
-	
-        var NumQuestions = 8;//mettre a jour le nombre de pages (questions) via le script
+        var NumQuestions = 75;
         
 
         CreateDiv('Stage', 'TextBoxDiv');
@@ -2571,6 +2022,482 @@ $(document).ready(function() {
 	
         switch (QuestNum) {
 	case 1:
+		var Info = '<H3 align="justify">Do you smoke cigarettes on a daily basis?</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1  >Yes<br>' +'<input type= "radio" id="2" name= "answer" value= 0 >No<br>' +'';
+		questID = "FTNDskiptest-1";
+		itemNum = 1;
+
+		flag = "skip";
+		skip_id = 2;
+		nb_skip = 6;
+
+		break;
+	
+	case 2:
+		var Info = '<H3 align="justify">How soon after waking do you smoke your first cigarette? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3  >Within 5 minutes<br>' +'<input type= "radio" id="2" name= "answer" value= 2  >5-30 minutes<br>' +'<input type= "radio" id="3" name= "answer" value= 1  >31-60 minutes<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >Later<br>' +'';
+		questID = "FTND-6";
+		itemNum = 1;
+
+		break;
+	
+	case 3:
+		var Info = '<H3 align="justify">Do you find it difficult to refrain from smoking in places where it is forbidden? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1  >Yes<br>' +'<input type= "radio" id="2" name= "answer" value= 0 >No<br>' +'';
+		questID = "FTND-6";
+		itemNum = 2;
+
+		break;
+	
+	case 4:
+		var Info = '<H3 align="justify">Which cigarette would you hate to give up? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1  >The first in the morning<br>' +'<input type= "radio" id="2" name= "answer" value= 0 >Any other<br>' +'';
+		questID = "FTND-6";
+		itemNum = 3;
+
+		break;
+	
+	case 5:
+		var Info = '<H3 align="justify">How many cigarettes a day do you smoke? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >10 or less<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >11-20<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >21-30<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >31 or more<br>' +'';
+		questID = "FTND-6";
+		itemNum = 4;
+
+		break;
+	
+	case 6:
+		var Info = '<H3 align="justify">Do you smoke more frequently in the morning? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1  >Yes<br>' +'<input type= "radio" id="2" name= "answer" value= 0 >No<br>' +'';
+		questID = "FTND-6";
+		itemNum = 5;
+
+		break;
+	
+	case 7:
+		var Info = '<H3 align="justify">Do you smoke even if you are sick in bed most of the day? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1  >Yes<br>' +'<input type= "radio" id="2" name= "answer" value= 0 >No<br>' +'';
+		questID = "FTND-6";
+		itemNum = 6;
+
+		break;
+	
+	case 8:
+		var Info = '<H3 align="justify">Do you ever have a drink containing alcohol? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1  >Yes<br>' +'<input type= "radio" id="2" name= "answer" value= 0 >No<br>' +'';
+		questID = "AUDITskiptest-1";
+		itemNum = 1;
+
+		flag = "skip";
+		skip_id = 2;
+		nb_skip = 10;
+
+		break;
+	
+	case 9:
+		var Info = '<H3 align="justify">How often do you have a drink containing alcohol? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Never<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >Monthly or less<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >2-4 times a month<br>' +'<input type= "radio" id="4" name= "answer" value= 3  >2-3 times a week<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >4 or more times a week<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 1;
+
+		break;
+	
+	case 10:
+		var Info = '<H3 align="justify">How many standard drinks containing alcohol do you have on a typical day when drinking? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Not concerned<br>' +'<input type= "radio" id="2" name= "answer" value= 0  >1 or 2<br>' +'<input type= "radio" id="3" name= "answer" value= 1  >3 or 4<br>' +'<input type= "radio" id="4" name= "answer" value= 2  >5 or 6<br>' +'<input type= "radio" id="5" name= "answer" value= 3  >7 to 9<br>' +'<input type= "radio" id="6" name= "answer" value= 4 >10 or more<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 2;
+
+		break;
+	
+	case 11:
+		var Info = '<H3 align="justify">How often do you have six or more drinks on one occasion? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Never<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >Less than monthly<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >Monthly<br>' +'<input type= "radio" id="4" name= "answer" value= 3  >Weekly<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >Daily or almost daily<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 3;
+
+		break;
+	
+	case 12:
+		var Info = '<H3 align="justify">During the past year, how often have you found that you were not able to stop drinking once you had started? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Never<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >Less than monthly<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >Monthly<br>' +'<input type= "radio" id="4" name= "answer" value= 3  >Weekly<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >Daily or almost daily<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 4;
+
+		break;
+	
+	case 13:
+		var Info = '<H3 align="justify">During the past year, how often have you failed to do what was normally expected of you because of drinking? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Never<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >Less than monthly<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >Monthly<br>' +'<input type= "radio" id="4" name= "answer" value= 3  >Weekly<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >Daily or almost daily<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 5;
+
+		break;
+	
+	case 14:
+		var Info = '<H3 align="justify">During the past year, how often have you needed a drink in the morning to get yourself going after a heavy drinking session? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Never<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >Less than monthly<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >Monthly<br>' +'<input type= "radio" id="4" name= "answer" value= 3  >Weekly<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >Daily or almost daily<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 6;
+
+		break;
+	
+	case 15:
+		var Info = '<H3 align="justify">During the past year, how often have you had a feeling of guilt or remorse after drinking? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Never<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >Less than monthly<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >Monthly<br>' +'<input type= "radio" id="4" name= "answer" value= 3  >Weekly<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >Daily or almost daily<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 7;
+
+		break;
+	
+	case 16:
+		var Info = '<H3 align="justify">During the past year, have you been unable to remember what happened the night before because you had been drinking? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >Never<br>' +'<input type= "radio" id="2" name= "answer" value= 1  >Less than monthly<br>' +'<input type= "radio" id="3" name= "answer" value= 2  >Monthly<br>' +'<input type= "radio" id="4" name= "answer" value= 3  >Weekly<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >Daily or almost daily<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 8;
+
+		break;
+	
+	case 17:
+		var Info = '<H3 align="justify">Have you or someone else been injured as a result of your drinking? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >No<br>' +'<input type= "radio" id="2" name= "answer" value= 2  >Yes, but not in the past year<br>' +'<input type= "radio" id="3" name= "answer" value= 4 >Yes, during the past year<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 9;
+
+		break;
+	
+	case 18:
+		var Info = '<H3 align="justify">Has a relative or friend, doctor or other health worker been concerned about your drinking or suggested you cut down? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0  >No<br>' +'<input type= "radio" id="2" name= "answer" value= 2  >Yes, but not in the past year<br>' +'<input type= "radio" id="3" name= "answer" value= 4 >Yes, during the past year<br>' +'';
+		questID = "AUDIT-10";
+		itemNum = 10;
+
+		break;
+	
+	case 19:
+		var Info = '<H3 align="justify">For the following questions, please select the reply that is closest to how you have been feeling in the past week. Don\'t take too long over your replies, your immediate is best.</h3><br><br>';
+		var Ticks = '';
+		questID = "HADSinstructions-1-";
+		itemNum = 1;
+
+		flag = "inst";
+
+		break;
+	
+	case 20:
+		var Info = '<H3 align="justify">I feel tense or "wound up".</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >Most of the time<br>' +'<input type= "radio" id="2" name= "answer" value= 2From time to time >A lot of the time<br>' +'<input type= "radio" id="3" name= "answer" value= 0 >Not at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 1;
+
+		break;
+	
+	case 21:
+		var Info = '<H3 align="justify">I get a sort of frightened feeling as if something awful is about to happen.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >Very definitely and quite badly<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Yes, but not too badly<br>' +'<input type= "radio" id="3" name= "answer" value= 1 >A little, but it doesn\'t worry me<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >Not at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 2;
+
+		break;
+	
+	case 22:
+		var Info = '<H3 align="justify">Worrying thoughts go through my mind.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >A great deal of the time<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >A lot of the time<br>' +'<input type= "radio" id="3" name= "answer" value= 1 >From time to time, but not too often<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >Only occasionally<br>' +'';
+		questID = "HADS-14";
+		itemNum = 3;
+
+		break;
+	
+	case 23:
+		var Info = '<H3 align="justify">I can sit at ease and feel relaxed.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >Definitely<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >Usually<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >Not often<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >Not at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 4;
+
+		break;
+	
+	case 24:
+		var Info = '<H3 align="justify">I get a sort of frightened feeling like "butterflies" in the stomach.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >Not at all<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >Occasionally<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >Quite often<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >Very often<br>' +'';
+		questID = "HADS-14";
+		itemNum = 5;
+
+		break;
+	
+	case 25:
+		var Info = '<H3 align="justify">I feel restless as I have to be on the move.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >Very much indeed<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Quite a lot<br>' +'<input type= "radio" id="3" name= "answer" value= 1 >Not very much<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >Not at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 6;
+
+		break;
+	
+	case 26:
+		var Info = '<H3 align="justify">I get sudden feelings of panic.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >Very often indeed<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Quite often<br>' +'<input type= "radio" id="3" name= "answer" value= 1 >Not very often<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >Not at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 7;
+
+		break;
+	
+	case 27:
+		var Info = '<H3 align="justify">I still enjoy the things I used to enjoy.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >Definitely as much<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >Not quite so much<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >Only a little<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >Hardly at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 8;
+
+		break;
+	
+	case 28:
+		var Info = '<H3 align="justify">I can laugh and see the funny side of things.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >As much as I always could<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >Not quite so much now<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >Definitely not so much now<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >Not at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 9;
+
+		break;
+	
+	case 29:
+		var Info = '<H3 align="justify">I feel cheerful.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >Not at all<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Not often<br>' +'<input type= "radio" id="3" name= "answer" value= 1 >Sometimes<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >Most of the time<br>' +'';
+		questID = "HADS-14";
+		itemNum = 10;
+
+		break;
+	
+	case 30:
+		var Info = '<H3 align="justify">I feel as if I am slowed down.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >Nearly all the time<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Very often<br>' +'<input type= "radio" id="3" name= "answer" value= 1 >Sometimes<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >Not at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 11;
+
+		break;
+	
+	case 31:
+		var Info = '<H3 align="justify">I have lost interest in my appearance.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 3 >Definitely<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >I don\'t take as much care as I should<br>' +'<input type= "radio" id="3" name= "answer" value= 1 >I may not take quite as much care<br>' +'<input type= "radio" id="4" name= "answer" value= 0 >I take just as much care as ever<br>' +'';
+		questID = "HADS-14";
+		itemNum = 12;
+
+		break;
+	
+	case 32:
+		var Info = '<H3 align="justify">I look forward with enjoyment to things.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >As much as I ever did<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >Rather less than I used to<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >Definitely less than I used to<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >Hardly at all<br>' +'';
+		questID = "HADS-14";
+		itemNum = 13;
+
+		break;
+	
+	case 33:
+		var Info = '<H3 align="justify">I can enjoy a good book or radio or TV program.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >Often<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >Sometimes<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >Not often<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >Very seldom<br>' +'';
+		questID = "HADS-14";
+		itemNum = 14;
+
+		break;
+	
+	case 34:
+		var Info = '<H3 align="justify">Indicate how much you agree or disagree with the following statements.</h3><br><br>';
+		var Ticks = '';
+		questID = "BISBASinstructions-1-";
+		itemNum = 1;
+
+		flag = "inst";
+
+		break;
+	
+	case 35:
+		var Info = '<H3 align="justify">A person\'s family is the most important thing in life.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 1;
+
+		break;
+	
+	case 36:
+		var Info = '<H3 align="justify">Even if something bad is about to happen to me, I rarely experience fear or nervousness.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 2;
+
+		break;
+	
+	case 37:
+		var Info = '<H3 align="justify">I go out of my way to get things I want.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 3;
+
+		break;
+	
+	case 38:
+		var Info = '<H3 align="justify">When I\'m doing well at something I love to keep at it.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 4;
+
+		break;
+	
+	case 39:
+		var Info = '<H3 align="justify">I\'m always willing to try something new if I think it will be fun.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 5;
+
+		break;
+	
+	case 40:
+		var Info = '<H3 align="justify">How I dress is important to me.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 6;
+
+		break;
+	
+	case 41:
+		var Info = '<H3 align="justify">When I get something I want, I feel excited and energized.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 7;
+
+		break;
+	
+	case 42:
+		var Info = '<H3 align="justify">Criticism or scolding hurts me quite a bit.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 8;
+
+		break;
+	
+	case 43:
+		var Info = '<H3 align="justify">When I want something I usually go all-out to get it.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 9;
+
+		break;
+	
+	case 44:
+		var Info = '<H3 align="justify">I will often do things for no other reason than that they might be fun.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 10;
+
+		break;
+	
+	case 45:
+		var Info = '<H3 align="justify">It\'s hard for me to find the time to do things such as get a haircut.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 11;
+
+		break;
+	
+	case 46:
+		var Info = '<H3 align="justify">If I see a chance to get something I want I move on it right away.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 12;
+
+		break;
+	
+	case 47:
+		var Info = '<H3 align="justify">I feel pretty worried or upset when I think or know somebody is angry at me.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 13;
+
+		break;
+	
+	case 48:
+		var Info = '<H3 align="justify">When I see an opportunity for something I like I get excited right away.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 14;
+
+		break;
+	
+	case 49:
+		var Info = '<H3 align="justify">I often act on the spur of the moment.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 15;
+
+		break;
+	
+	case 50:
+		var Info = '<H3 align="justify">If I think something unpleasant is going to happen I usually get pretty "worked up".</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 16;
+
+		break;
+	
+	case 51:
+		var Info = '<H3 align="justify">I often wonder why people act the way they do.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 17;
+
+		break;
+	
+	case 52:
+		var Info = '<H3 align="justify">When good things happen to me, it affects me strongly.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 18;
+
+		break;
+	
+	case 53:
+		var Info = '<H3 align="justify">I feel worried when I think I have done poorly at something important.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 19;
+
+		break;
+	
+	case 54:
+		var Info = '<H3 align="justify">I crave excitement and new sensations.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 20;
+
+		break;
+	
+	case 55:
+		var Info = '<H3 align="justify">When I go after something I use a "no holds barred" approach.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 21;
+
+		break;
+	
+	case 56:
+		var Info = '<H3 align="justify">I have very few fears compared to my friends.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 22;
+
+		break;
+	
+	case 57:
+		var Info = '<H3 align="justify">It would excite me to win a contest.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 23;
+
+		break;
+	
+	case 58:
+		var Info = '<H3 align="justify">I worry about making mistakes.</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >Very true for me<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Somewhat true for me<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >Somewhat false for me<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >Very false for me<br>' +'';
+		questID = "BISBAS-24";
+		itemNum = 24;
+
+		break;
+	
+	case 59:
 		var Info = '<H3 align="justify">The following questions measure your perception of your childhood and your current adult life. Please indicate your agreement with these statements. Please read each statement carefully, and then indicate how much you agree with the statement.</h3><br><br>';
 		var Ticks = '';
 		questID = "SESinstructions-1-";
@@ -2580,59 +2507,131 @@ $(document).ready(function() {
 
 		break;
 	
-	case 2:
-		var Info = '<H3 align="justify">When I was a child, my family usually had enough money for things when I was growing up</h3><br><br>';
+	case 60:
+		var Info = '<H3 align="justify">When I was growing up, someone in my house was always yelling at someone else.</h3><br><br>';
 		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
-		questID = "SES-7";
+		questID = "SES-13";
 		itemNum = 1;
 
 		break;
 	
-	case 3:
-		var Info = '<H3 align="justify">When I was a child, I grew up in a relatively wealthy neighborhood</h3><br><br>';
+	case 61:
+		var Info = '<H3 align="justify">Some of the punishments I received when I was a child now seem too harsh to me.</h3><br><br>';
 		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
-		questID = "SES-7";
+		questID = "SES-13";
 		itemNum = 2;
 
 		break;
 	
-	case 4:
-		var Info = '<H3 align="justify">When I was a child, I felt relatively wealthy compared to the other kids in my school</h3><br><br>';
+	case 62:
+		var Info = '<H3 align="justify">I guess you could say that I wasn’t treated as well as I should have been at home.</h3><br><br>';
 		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
-		questID = "SES-7";
+		questID = "SES-13";
 		itemNum = 3;
 
 		break;
 	
-	case 5:
-		var Info = '<H3 align="justify">Now as an adult, I have enough money to buy things I want</h3><br><br>';
+	case 63:
+		var Info = '<H3 align="justify">When I was younger than 10, things were often chaotic in my house</h3><br><br>';
 		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
-		questID = "SES-7";
+		questID = "SES-13";
 		itemNum = 4;
 
 		break;
 	
-	case 6:
-		var Info = '<H3 align="justify">Now as an adult, I don\'t need to worry too much about paying my bills</h3><br><br>';
+	case 64:
+		var Info = '<H3 align="justify">When I was younger than 10, people often moved in and out of my house on a pretty random basis</h3><br><br>';
 		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
-		questID = "SES-7";
+		questID = "SES-13";
 		itemNum = 5;
 
 		break;
 	
-	case 7:
-		var Info = '<H3 align="justify">Now as an adult, I don\'t think I\'ll have to worry about money too much in the future</h3><br><br>';
+	case 65:
+		var Info = '<H3 align="justify">When I was younger than 10, I had a hard time knowing what my parents or other people in my house were going to say or do from day-to-day </h3><br><br>';
 		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
-		questID = "SES-7";
+		questID = "SES-13";
 		itemNum = 6;
 
 		break;
 	
-	case 8:
+	case 66:
+		var Info = '<H3 align="justify">When I was younger than 10, my family usually had enough money for things when I was growing up</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
+		questID = "SES-13";
+		itemNum = 7;
+
+		break;
+	
+	case 67:
+		var Info = '<H3 align="justify">When I was younger than 10, I grew up in a relatively wealthy neighborhood</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
+		questID = "SES-13";
+		itemNum = 8;
+
+		break;
+	
+	case 68:
+		var Info = '<H3 align="justify">When I was younger than 10, I felt relatively wealthy compared to the other kids in my school</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
+		questID = "SES-13";
+		itemNum = 9;
+
+		break;
+	
+	case 69:
+		var Info = '<H3 align="justify">Now as an adult, I have enough money to buy things I want</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
+		questID = "SES-13";
+		itemNum = 10;
+
+		break;
+	
+	case 70:
+		var Info = '<H3 align="justify">Now as an adult, I don\'t need to worry too much about paying my bills</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
+		questID = "SES-13";
+		itemNum = 11;
+
+		break;
+	
+	case 71:
+		var Info = '<H3 align="justify">Now as an adult, I don\'t think I\'ll have to worry about money too much in the future</h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1 >1 Strongly disagree<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="3" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="4" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="5" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="6" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="7" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="8" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="9" name= "answer" value= 9 >9 Strongly agree<br>' +'';
+		questID = "SES-13";
+		itemNum = 12;
+
+		break;
+	
+	case 72:
 		var Info = '<H3 align="justify"><b>Think of this ladder as representing where people stand in their communities.</b> People define community in different ways: please define it in whatever way is most meaningful to you. At the <b>top</b> of the ladder are the people who have the <b>highest standing</b> in their community. At the <b>bottom</b> are the people who have the <b>lowest standing</b> in their community. <b>Where would you place yourself on this ladder?</b></h3><br><br>';
 		var Ticks = '<input type= "radio" id="1" name= "answer" value= 10 >10 Top - highest standing<br>' +'<input type= "radio" id="2" name= "answer" value= 9 >9<br>' +'<input type= "radio" id="3" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="4" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="5" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="6" name= "answer" value= 5 >5<br>' +'<input type= "radio" id="7" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="8" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="9" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="10" name= "answer" value= 1 >1 Bottom - lower standing<br>' +'';
-		questID = "SES-7";
-		itemNum = 7;
+		questID = "SES-13";
+		itemNum = 13;
+
+		break;
+	
+	case 73:
+		var Info = '<H3 align="justify">Generally speaking, would you say that most people can be trusted or that you can\'t be too careful in dealing with most people? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 1  >Most people can be trusted<br>' +'<input type= "radio" id="2" name= "answer" value= 2 >Can\'t be too careful<br>' +'';
+		questID = "TRUST-1";
+		itemNum = 1;
+
+		break;
+	
+	case 74:
+		var Info = '<H3 align="justify">To what extent are you satisfied with your current standard of living? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >0 Absolutely dissatisfied<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >1<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="6" name= "answer" value= 5 >5 Neither satisfied nor dissatisfied<br>' +'<input type= "radio" id="7" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="8" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="9" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="10" name= "answer" value= 9 >9<br>' +'<input type= "radio" id="11" name= "answer" value= 10 >10 Absolutely satisfied<br>' +'';
+		questID = "CEPREMAP-2";
+		itemNum = 1;
+
+		break;
+	
+	case 75:
+		var Info = '<H3 align="justify">When you think about what you will experience in the coming years, are you satisfied with this perspective? </h3><br><br>';
+		var Ticks = '<input type= "radio" id="1" name= "answer" value= 0 >0 Absolutely dissatisfied<br>' +'<input type= "radio" id="2" name= "answer" value= 1 >1<br>' +'<input type= "radio" id="3" name= "answer" value= 2 >2<br>' +'<input type= "radio" id="4" name= "answer" value= 3 >3<br>' +'<input type= "radio" id="5" name= "answer" value= 4 >4<br>' +'<input type= "radio" id="6" name= "answer" value= 5 >5 Neither satisfied nor dissatisfied<br>' +'<input type= "radio" id="7" name= "answer" value= 6 >6<br>' +'<input type= "radio" id="8" name= "answer" value= 7 >7<br>' +'<input type= "radio" id="9" name= "answer" value= 8 >8<br>' +'<input type= "radio" id="10" name= "answer" value= 9 >9<br>' +'<input type= "radio" id="11" name= "answer" value= 10 >10 Absolutely satisfied<br>' +'';
+		questID = "CEPREMAP-2";
+		itemNum = 2;
 
 		break;
 	default:
@@ -2676,12 +2675,7 @@ $(document).ready(function() {
 		answer = parseInt( $("input:radio:checked").attr('id') );
 		answer_value = $("input:radio:checked").val();
 
-		//console.log(answer+' '+answer_value);
-
-
-		
 		SendQuestDataDB(0);
-		//console.log($("input:radio:checked").val());
 		
                 $('#TextBoxDiv').remove();
                 $('#Stage').empty();
@@ -2705,73 +2699,70 @@ $(document).ready(function() {
         });
 
 
-	    function SendQuestDataDB(call){
-		clog = 'EXP: '+ExpName+' $ EXPID: '+ExpID+' $ ID: '+SubID+' $ QUESTIONNAIRE: '+questID+' $ ITEM: '+itemNum+' $ ANSWER: '+answer+' $ VAL:'+answer_value+' $ RTIME: '+(Reaction_time-Question_time);
+	function SendQuestDataDB(call){
+	    clog = 'EXP: '+ExpName+' $ EXPID: '+ExpID+' $ ID: '+SubID+' $ QUESTIONNAIRE: '+questID+' $ ITEM: '+itemNum+' $ ANSWER: '+answer+' $ VAL:'+answer_value+' $ RTIME: '+(Reaction_time-Question_time);
 
-		$.ajax({
-		    type: 'POST',
-		    data: {exp: ExpName, expID: ExpID, id: SubID, qid: questID, item: itemNum, ans: answer, val:answer_value, reaction_time:Reaction_time-Question_time},
-		    async: true,
-		    url: 'InsertQuestionnaireDataDB.php',
-		    dataType: 'json',
-		    success: function(r) {
-			//clog = 'quest: sucess $ '+clog+' $ call: '+call+' $ errno: '+r[0].ErrNo+'\n';
-			clog = 'questionnaire_data $ '+clog+' $ dbcall success \n';
-			log+= clog;
-			
-			if (r[0].ErrorNo > 0 && call+1<maxDBCalls){
-			    //SendErrorDB(cl);
-			    SendQuestDataDB(call+1);
-			}
-		    },
-		    error: function(XMLHttpRequest, textStatus, errorThrown) {
-			//clog = 'quest: error $ '+clog+' $ call: '+call+' $ stat: '+textStatus+' $ err: '+errorThrown+'\n';
-			clog = 'questionnaire_data $ '+clog+' $ dbcall failure \n';
-			log+=clog;
-			
-			if(call+1<maxDBCalls){
-			    //SendErrorDB(cl);
-			    SendQuestDataDB(call+1);
-			}
-			//alert("Status: " + textStatus);
-			//alert("Error: " + errorThrown);
+	    $.ajax({
+		type: 'POST',
+		data: {exp: ExpName, expID: ExpID, id: SubID, qid: questID, item: itemNum, ans: answer, val:answer_value, reaction_time:Reaction_time-Question_time},
+		async: true,
+		url: 'InsertQuestionnaireDataDB.php',
+		dataType: 'json',
+		success: function(r) {
+		    clog = 'questionnaire_data $ '+clog+' $ dbcall success \n';
+		    log+= clog;
+		    
+		    if (r[0].ErrorNo > 0 && call+1<maxDBCalls){
+			SendQuestDataDB(call+1);
 		    }
-		});
-	    };
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		    clog = 'questionnaire_data $ '+clog+' $ dbcall failure \n';
+		    log+=clog;
+		    
+		    if(call+1<maxDBCalls){
+			SendQuestDataDB(call+1);
+		    }
+		    
+		}
+	    });
+	};
     };
 
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////       End     /////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     function EndExperiment() {
 
 	InsertLog(0,'log');
-	
-	// $('#Top').css('height', thisHeight / 20);
-	// $('#Stage').css('width', DispWidth);
-	// $('#Stage').css('min-height', thisHeight * 17 / 20);
-	// $('#Bottom').css('min-height', thisHeight / 20);
 
 	CreateDiv('Stage', 'TextBoxDiv');
 
 	var toprint = parseInt(TotalReward)/1000;
 
 	var wonlost;
+	var click;
 	if (Language=='en'){
 	    wonlost = ' earned ';
+	    click = 'Prolific.ac';
 	    if (toprint<0){
 		wonlost = ' lost ';
 	    }
 	}
 	else if (Language=='fr'){
 	    wonlost = ' gagné ';
+	    click = 'Cliquez ici.';
 	    if (toprint<0){
 		wonlost = ' perdu ';
 	    }
 	}
 
-	var Title = '<h3 align = "center">Le jeu est terminé.<br>Vous avez '+wonlost+toprint+' points au total.<br><br>Merci de votre participation!<br><br>Veuillez cliquer sur le lien suivant afin de compléter l\'étude:<br></h3><br>';
-	var url = '';//'<center><a href="'+link+'">Prolific</a></center>';
+	var Title = '<h3 align = "center">Le jeu est terminé.<br>Vous avez '+wonlost+toprint+' points au total.<br><br>Merci de votre participation!<br></h3><br>';
+	var url = '';
 	if (CompLink)
-	    url = '<center><a href="'+link+'">Cliquez ici.</a></center>';
+	    url = '<center><a href="">'+click+'</a></center>';
 
 	$('#TextBoxDiv').html(Title+url);
 
@@ -2779,25 +2770,95 @@ $(document).ready(function() {
     };
 
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////        Utility functions               //////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function GetBrowser(){
+
+	var nVer = navigator.appVersion;
+	var nAgt = navigator.userAgent;
+	var browserName  = navigator.appName;
+	var fullVersion  = ''+parseFloat(navigator.appVersion);
+	var majorVersion = parseInt(navigator.appVersion,10);
+	var nameOffset,verOffset,ix;
+
+	// In Opera, the true version is after "Opera" or after "Version"
+	if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
+	    browserName = "Opera";
+	    fullVersion = nAgt.substring(verOffset+6);
+	    if ((verOffset=nAgt.indexOf("Version"))!=-1)
+		fullVersion = nAgt.substring(verOffset+8);
+	}
+	// In MSIE, the true version is after "MSIE" in userAgent
+	else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
+	    browserName = "Microsoft Internet Explorer";
+	    fullVersion = nAgt.substring(verOffset+5);
+	}
+	// In Chrome, the true version is after "Chrome"
+	else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
+	    browserName = "Chrome";
+	    fullVersion = nAgt.substring(verOffset+7);
+	}
+	// In Safari, the true version is after "Safari" or after "Version"
+	else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
+	    browserName = "Safari";
+	    fullVersion = nAgt.substring(verOffset+7);
+	    if ((verOffset=nAgt.indexOf("Version"))!=-1)
+		fullVersion = nAgt.substring(verOffset+8);
+	}
+	// In Firefox, the true version is after "Firefox"
+	else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
+	    browserName = "Firefox";
+	    fullVersion = nAgt.substring(verOffset+8);
+	}
+	// In most other browsers, "name/version" is at the end of userAgent
+	else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) <
+		  (verOffset=nAgt.lastIndexOf('/')) )
+	{
+	    browserName = nAgt.substring(nameOffset,verOffset);
+	    fullVersion = nAgt.substring(verOffset+1);
+	    if (browserName.toLowerCase()==browserName.toUpperCase()) {
+		browserName = navigator.appName;
+	    }
+	}
+	// trim the fullVersion string at semicolon/space if present
+	if ((ix=fullVersion.indexOf(";"))!=-1)
+	    fullVersion=fullVersion.substring(0,ix);
+	if ((ix=fullVersion.indexOf(" "))!=-1)
+	    fullVersion=fullVersion.substring(0,ix);
+
+	majorVersion = parseInt(''+fullVersion,10);
+	if (isNaN(majorVersion)) {
+	    fullVersion  = ''+parseFloat(navigator.appVersion);
+	    majorVersion = parseInt(navigator.appVersion,10);
+	}
+	
+	//return   'Browser: '+browserName+' - Vers:'+fullVersion+' - MajorVers: '+majorVersion+' - NavAppName: '+navigator.appName+' - NavUserAge: '+navigator.userAgent;
+	return   browserName+' '+fullVersion+' '+majorVersion+' '+navigator.appName+' '+navigator.userAgent;
+	
+    }
+
+
+    function GetOS(){
+	var OSName="Unknown OS";
+	if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+	if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+	if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+	if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+
+	return OSName;
+    }
+
+
     function getKeyCode(event){
-	return event.which;
-	// if (event.key !== undefined) {
-	//     // Handle the event with KeyboardEvent.key and set handled true.
-	//     return event.key;
-	// } else if (event.keyIdentifier !== undefined) {
-	//     // Handle the event with KeyboardEvent.keyIdentifier and set handled true.
-	//     return event.keyIdentifier;
-	// } else if (event.keyCode !== undefined) {
-	//     // Handle the event with KeyboardEvent.keyCode and set handled true.
-	//     return event.keyCode;
-	// }	
+	   return event.which;
     }
     
     //Utility Functions
     function getColor(FB){
 	color = border_color;
 	if(FB==0){
-	    //color = "#bfbfc9";
 	    color = "black";
 	}else if(FB==1){
 	    color = "#07ed19";
@@ -2830,15 +2891,10 @@ $(document).ready(function() {
     function shuffle(array) {
 	let counter = array.length;
 
-	// While there are elements in the array
 	while (counter > 0) {
-	    // Pick a random index
 	    let index = Math.floor(Math.random() * counter);
-
-	    // Decrease counter by 1
 	    counter--;
 
-	    // And swap the last element with it
 	    let temp = array[counter];
 	    array[counter] = array[index];
 	    array[index] = temp;
