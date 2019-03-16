@@ -335,7 +335,7 @@ $(document).ready(function() {
 
         var Title = '<H2 align = "center">Consent</H2><br>';
         var Info = '<H3>Please read the following criteria and tick all boxes</H3><br><br>';
-        var Ticks ='<input type="checkbox" name="consent" value="consent1" >I have read the information page<br>' + '<input type="checkbox" name="consent" value="consent2" >I understand that I am free to withdraw at any time, without giving a reason, and without incurring any penalty<br>' + '<input type="checkbox" name="consent" value="consent3" >I am over 18 years of age.<br>' ;
+        var Ticks ='<input type="checkbox" name="consent" value="consent1" >I understand that I am free to withdraw at any time, without giving a reason, and without incurring any penalty<br>' + '<input type="checkbox" name="consent" value="consent2" >I am over 18 years of age.<br>' ;
 
         $('#TextBoxDiv').html(Title + Info + Ticks);
 
