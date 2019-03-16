@@ -83,3 +83,6 @@ To run the experiment, you need to configure a server (and a mysql database) in 
 You will find a template for an empty database in "sql/empty_db.sql". 
 You need to configure your database account in the file "connectDB.php".
 In addition to the mysql database, experiment logs are recorded under the "/log" folder.
+The code is also compatible with mobile devices, so experiments can be run on tablets and smartphones. 
+Here is an example of a task that you can generate http://human-rl.scicog.fr/exp/
+Enjoy!
