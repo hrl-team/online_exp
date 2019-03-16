@@ -85,4 +85,5 @@ You need to configure your database account in the file "connectDB.php".
 In addition to the mysql database, experiment logs are recorded under the "/log" folder.
 The code is also compatible with mobile devices, so experiments can be run on tablets and smartphones. 
 Here is an example of a task that you can generate http://human-rl.scicog.fr/exp/
+
 Enjoy!
