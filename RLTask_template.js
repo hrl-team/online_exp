@@ -247,7 +247,8 @@ $(document).ready(function() {
 		$('#Stage').empty();
 		$('#Bottom').empty();
 
-		Information();
+		Consent();
+
 	    }else{
 		alert('You must enter your ID.');
 	    }
@@ -293,7 +294,7 @@ $(document).ready(function() {
 		$('#Stage').empty();
 		$('#Bottom').empty();
 		
-		Information();
+		Consent();
 	    }
         });
 			      
@@ -324,7 +325,49 @@ $(document).ready(function() {
 
     }
     
-    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Consent          ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function Consent() {
+
+
+        CreateDiv('Stage', 'TextBoxDiv');
+
+        var Title = '<H2 align = "center">Consent form for participants in research studies</H2><br>';
+        var Info = '<H3>Please read the following criteria and tick all boxes. </H3><br><br>';
+        var Ticks = '<input type="checkbox" name="consent" value="consent1" id= >I have read the information page<br>' +
+            '<input type="checkbox" name="consent" value="consent2">I have had the opportunity to contact the researcher to ask questions and discuss the study<br>' +
+            '<input type="checkbox" name="consent" value="consent3">I have received satisfactory answers to my questions or have been advised of an individual to contact for answers to pertinent questions about the research and my rights as a participant<br>' +
+            '<input type="checkbox" name="consent" value="consent4">I understand that I am free to withdraw at any time, without giving a reason, and without incurring any penalty<br>' +
+            '<input type="checkbox" name="consent" value="consent5">I am over 18 years of age.<br>';
+
+        $('#TextBoxDiv').html(Title + Info + Ticks);
+
+    if(Language=='en'){
+            var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Next" ></div>';
+    }
+    else if(Language=='fr'){
+        var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Suivant" ></div>';
+    }
+        $('#Bottom').html(Buttons);
+
+        $('#toInstructions').click(function() {
+            if ($("input:checkbox:not(:checked)").length > 0) {
+                alert('You must tick all check boxes to continue.');
+
+            } else {
+                $('#TextBoxDiv').remove();
+                $('#Stage').empty();
+                $('#Bottom').empty();
+
+                Information()
+
+        
+            }
+            ;
+        });
+    };
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////          Information      ////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -352,7 +395,10 @@ $(document).ready(function() {
             $('#TextBoxDiv').remove();
             $('#Stage').empty();
             $('#Bottom').empty();
-            Consent();
+            
+            SendExpDataDB(0);
+            PlayTraining(0);
+
            
 	    
         });
@@ -360,47 +406,7 @@ $(document).ready(function() {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////          Consent          ////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function Consent() {
-
-
-        CreateDiv('Stage', 'TextBoxDiv');
-
-        var Title = '<H2 align = "center">Consent form for participants in research studies</H2><br>';
-        var Info = '<H3>Please read the following criteria and tick all boxes. </H3><br><br>';
-        var Ticks = '<input type="checkbox" name="consent" value="consent1" id= >I have read the information page<br>' +
-            '<input type="checkbox" name="consent" value="consent2">I have had the opportunity to contact the researcher to ask questions and discuss the study<br>' +
-            '<input type="checkbox" name="consent" value="consent3">I have received satisfactory answers to my questions or have been advised of an individual to contact for answers to pertinent questions about the research and my rights as a participant<br>' +
-            '<input type="checkbox" name="consent" value="consent4">I understand that I am free to withdraw at any time, without giving a reason, and without incurring any penalty<br>' +
-            '<input type="checkbox" name="consent" value="consent5">I am over 18 years of age.<br>';
-
-        $('#TextBoxDiv').html(Title + Info + Ticks);
-
- 	if(Language=='en'){
-            var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Next" ></div>';
-	}
-	else if(Language=='fr'){
-	    var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Suivant" ></div>';
-	}
-        $('#Bottom').html(Buttons);
-
-        $('#toInstructions').click(function() {
-            if ($("input:checkbox:not(:checked)").length > 0) {
-                alert('You must tick all check boxes to continue.');
-
-            } else {
-                $('#TextBoxDiv').remove();
-                $('#Stage').empty();
-                $('#Bottom').empty();
-                SendExpDataDB(0);
-                PlayTraining(0);
-		
-            }
-            ;
-        });
-    };
+    
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

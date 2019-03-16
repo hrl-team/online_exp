@@ -247,7 +247,8 @@ $(document).ready(function() {
 		$('#Stage').empty();
 		$('#Bottom').empty();
 
-		Information();
+		Consent();
+
 	    }else{
 		alert('You must enter your ID.');
 	    }
@@ -293,7 +294,7 @@ $(document).ready(function() {
 		$('#Stage').empty();
 		$('#Bottom').empty();
 		
-		Information();
+		Consent();
 	    }
         });
 			      
@@ -324,7 +325,45 @@ $(document).ready(function() {
 
     }
     
-    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////          Consent          ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function Consent() {
+
+
+        CreateDiv('Stage', 'TextBoxDiv');
+
+        var Title = '<H2 align = "center">Consent</H2><br>';
+        var Info = '<H3>Please read the following criteria and tick all boxes</H3><br><br>';
+        var Ticks ='<input type="checkbox" name="consent" value="consent1" >I have read the information page<br>' + '<input type="checkbox" name="consent" value="consent2" >I understand that I am free to withdraw at any time, without giving a reason, and without incurring any penalty<br>' + '<input type="checkbox" name="consent" value="consent3" >I am over 18 years of age.<br>' ;
+
+        $('#TextBoxDiv').html(Title + Info + Ticks);
+
+    if(Language=='en'){
+            var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Next" ></div>';
+    }
+    else if(Language=='fr'){
+        var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Suivant" ></div>';
+    }
+        $('#Bottom').html(Buttons);
+
+        $('#toInstructions').click(function() {
+            if ($("input:checkbox:not(:checked)").length > 0) {
+                alert('You must tick all check boxes to continue.');
+
+            } else {
+                $('#TextBoxDiv').remove();
+                $('#Stage').empty();
+                $('#Bottom').empty();
+
+                Information()
+
+        
+            }
+            ;
+        });
+    };
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////          Information      ////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -352,7 +391,10 @@ $(document).ready(function() {
             $('#TextBoxDiv').remove();
             $('#Stage').empty();
             $('#Bottom').empty();
-            Consent();
+            
+            SendExpDataDB(0);
+            PlayTraining(0);
+
            
 	    
         });
@@ -360,43 +402,7 @@ $(document).ready(function() {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////          Consent          ////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function Consent() {
-
-
-        CreateDiv('Stage', 'TextBoxDiv');
-
-        var Title = '<H2 align = "center">Consent</H2><br>';
-        var Info = '<H3>Please read the following criteria and tick all boxes</H3><br><br>';
-        var Ticks ='<input type="checkbox" name="consent" value="consent1" >I have read the information page<br>' + '<input type="checkbox" name="consent" value="consent2" >I understand that I am free to withdraw at any time, without giving a reason, and without incurring any penalty<br>' + '<input type="checkbox" name="consent" value="consent3" >I am over 18 years of age.<br>' ;
-
-        $('#TextBoxDiv').html(Title + Info + Ticks);
-
- 	if(Language=='en'){
-            var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Next" ></div>';
-	}
-	else if(Language=='fr'){
-	    var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toInstructions" value="Suivant" ></div>';
-	}
-        $('#Bottom').html(Buttons);
-
-        $('#toInstructions').click(function() {
-            if ($("input:checkbox:not(:checked)").length > 0) {
-                alert('You must tick all check boxes to continue.');
-
-            } else {
-                $('#TextBoxDiv').remove();
-                $('#Stage').empty();
-                $('#Bottom').empty();
-                SendExpDataDB(0);
-                PlayTraining(0);
-		
-            }
-            ;
-        });
-    };
+    
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
