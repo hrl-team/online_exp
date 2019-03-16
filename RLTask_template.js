@@ -224,7 +224,7 @@ $(document).ready(function() {
         CreateDiv('Stage', 'TextBoxDiv');
 	
 	if(Language=='en'){
-            var Title = '<H3 align = "justify">Before you start, please:<br><br>- maximize your browser window<br><br>- switch off phone/e-mail/music & anything else distracting<br><br>- and please enter your Prolific ID: <input type="text" id = "textbox_id" name="ID"></H3>';
+            var Title = '<H3 align = "justify">Before you start, please:<br><br>- maximize your browser window<br><br>- switch off phone/e-mail/music & anything else distracting<br><br>- and please enter your ID: <input type="text" id = "textbox_id" name="ID"></H3>';
 	    var Buttons = '<div align="center"><input align="center" type="button"  class="btn btn-default" id="toConsent" value="Next" ></div>';
 	}
 	else if(Language=='fr'){
@@ -249,7 +249,7 @@ $(document).ready(function() {
 
 		Information();
 	    }else{
-		alert('You must enter your Prolific ID.');
+		alert('You must enter your ID.');
 	    }
         });
     };
@@ -352,9 +352,8 @@ $(document).ready(function() {
             $('#TextBoxDiv').remove();
             $('#Stage').empty();
             $('#Bottom').empty();
-            //Consent();
-	    SendExpDataDB(0);
-	    PlayTraining(0);
+            Consent();
+           
 	    
         });
     };
@@ -395,7 +394,8 @@ $(document).ready(function() {
                 $('#TextBoxDiv').remove();
                 $('#Stage').empty();
                 $('#Bottom').empty();
-                SubID = GetUserID();
+                SendExpDataDB(0);
+                PlayTraining(0);
 		
             }
             ;
