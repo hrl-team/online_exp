@@ -72,7 +72,7 @@ Stimuli images under "images/**IMAGE-FOLDER-NAME**/stim" and outcomes under "ima
 
 
 # GENERATING A TASK
-Once e a task is specified through configuration files, it can be generated using the command 
+Once a task is specified through configuration files, it can be generated using the command 
 <pre>
 python generate.py TASK-NAME IMAGE-FOLDER-NAME
 </pre>
@@ -82,8 +82,13 @@ Example: to generate a task called task1 using the images in cards_gif, you need
 To run the experiment, you need to configure a server (and a mysql database) in which you put the generated code.
 You will find a template for an empty database in "sql/empty_db.sql". 
 You need to configure your database account in the file "connectDB.php".
+
 In addition to the mysql database, experiment logs are recorded under the "/log" folder.
-The code is also compatible with mobile devices, so experiments can be run on tablets and smartphones. 
+Log files are produced as a backup for eventual missing data from the database (for example due to connexion problems).
+They contain all task information, including trial by trials data.
+So, __if you don't want to setup a database, you can extract the experiments data by parsing log files__.
+
+The code is also __compatible with mobile devices__, so experiments can be run on tablets and smartphones. 
 Here is an example of a task that you can generate http://human-rl.scicog.fr/exp/
 
 Enjoy!
